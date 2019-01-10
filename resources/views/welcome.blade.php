@@ -1,98 +1,90 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.frontend')
 
-        <title>Laravel</title>
+@section('content')
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+        <section class="ask-question">
+           <div class="container">
+             <div class="row">
+               <div class="col-md-6 col-sm-10 col-sm-offset-1 col-md-offset-0 col-xs-12">
+                 <!--ask item -->
+                 <div class="ask-box active">
+                    <div class="ask-circle">
+                      <span class="fa fa-usd"></span>
+                    </div>
+                    <div class="ask-info">
+                      <h3 class="text-white">BITCOIN PRICE</h3>
+                    </div>
+                 </div>
+               </div>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+                <div class="col-md-6 col-xs-12">
+                    <div class="item clearfix">
+                        <div class="content-box">
 
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                            <a href="{{ url( '/register' ) }}" class="thm-btn">Register</a>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+             </div>
+             <div class="row">
+                <div class="col-md-6 col-sm-10 col-sm-offset-1 col-md-offset-0 col-xs-12">
+                 <!--ask item -->
+                 <div class="ask-box active mt-30">
+                    <div class="ask-circle">
+                      <span class="fa fa-usd"></span>
+                    </div>
+                    <div class="ask-info">
+                      <h3 class="text-white">ETHEREUM PRICE</h3>
+                    </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </section>
+
+        <section class="get-quote-section" style=" background-image:url(images/resources/getquote-bg-img.jpg);">
+            <div class="container">
+                <div class="row clearfix">
+                      
+                  <!--Form Column-->
+                  <div class="form-column col-lg-7 col-md-8 col-sm-12 col-xs-12">
+                    <!--Title-->
+                      <div class="sec-title ">
+                          <h2 class="left">For more info</h2>
+                      </div>
+              
+                    <div class="form-box default-form">
+                          <form method='post'><input type='hidden' name='form-name' value='form 1' />
+                          
+                              <div class="row clearfix">
+                                  <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                      <div class="field-inner"><input type="text" name="form_name" value="" placeholder="Name" required=""></div>
+                                  </div>
+                                  <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                      <div class="field-inner"><input type="email" name="form_email" value="" placeholder="Email" required=""></div>
+                                  </div>
+                                  <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                      <div class="field-inner"><input type="text" name="form_phone" value="" placeholder="Phone"></div>
+                                  </div>
+                                  <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                      <div class="field-inner"><input type="text" name="form_subject" value="" placeholder="subject"></div>
+                                  </div>
+                                  <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                      <div class="field-inner"><textarea name="form_message" placeholder="Message"></textarea></div>
+                                  </div>
+                                  <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                      <div class="field-inner theme-btn"><button type="submit" class="thm-btn">Submit Now</button></div>
+                                  </div>
+                              </div>
+                              
+                          </form>
+                      </div>
+                  </div>
+                  
+              </div>
+          </div>
+        </section>
+
+
+@endsection
