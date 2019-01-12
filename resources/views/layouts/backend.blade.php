@@ -2,12 +2,12 @@
 <html>
 
 <head>
-    <title>BITROSEED | {{ $title }}</title>
+    <title>ONE GLOBAL NETwORK</title>
     <meta charset="utf-8">
     <meta content="ie=edge" http-equiv="x-ua-compatible">
-    <meta content="BITROSEED" name="keywords">
-    <meta content="BITROSEED" name="author">
-    <meta content="BITROSEED, Peer to Peer Donations" name="description">
+    <meta content="ONE GLOBAL NETwORK" name="keywords">
+    <meta content="ONE GLOBAL NETwORK" name="author">
+    <meta content="ONE GLOBAL NETwORK, Peer to Peer Donations" name="description">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="support" content="{{ \App\Helpers\Helper::getSupportUserID() }}">
@@ -15,7 +15,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset( 'images/favicon/apple-touch-icon.png' ) }}">
     <link rel="icon" type="image/png" href="{{ asset( 'images/favicon/favicon-32x32.png' ) }}" sizes="32x32">
     <link rel="icon" type="image/png" href="{{ asset( 'images/favicon/favicon-16x16.png' ) }}" sizes="16x16">
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link href="{{ asset( 'css/backend.css' ) }}" rel="stylesheet">
     <style type="text/css">
     .alert {
@@ -27,7 +26,6 @@
     }
 
     </style>
-    <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
 </head>
 
 <body>
@@ -36,7 +34,7 @@
         <div class="layout-w">
             <div class="menu-mobile menu-activated-on-click color-scheme-dark">
                 <div class="mm-logo-buttons-w">
-                    <a href="#"><img src="{{ asset( 'images/logo/logo.png' ) }}" alt="BITROSEED"></a>
+                    <a href="#"><img src="{{ asset( 'images/logo/logo.png' ) }}" alt="ONE GLOBAL NETwORK"></a>
                     <div class="mm-buttons">
                         <div class="mobile-menu-trigger">
                             <div class="os-icon os-icon-hamburger-menu-1"></div>

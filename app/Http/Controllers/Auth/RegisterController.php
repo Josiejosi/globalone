@@ -49,9 +49,15 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
+
+            'name'                  => ['required', 'string', 'max:255'],
+            'surname'               => ['required', 'string', 'max:255'],
+            'country'               => ['required', 'string', 'max:255'],
+            'email'                 => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'username'              => ['required', 'string', 'username', 'max:255', 'unique:users'],
+            'phone'                 => ['required', 'string', 'phone', 'max:15', 'unique:users'],
+            'password'              => ['required', 'string', 'min:6', 'confirmed'],
+
         ]);
     }
 
@@ -63,10 +69,30 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        $user                       = User::create([
+
+            'name'                  => $data['name'],
+            'email'                 => $data['email'],
+            'username'              => $data['username'], 
+            'surname'               => $data['surname'], 
+            'phone'                 => $data['phone'], 
+            'country'               => $data['country'], 
+            'is_active'             => 0, 
+            'password'              => Hash::make($data['password']),
+
         ]);
+
+        $account                    = Account::create([
+
+            'bank_name'             => $data['bank_name'], 
+            'account_holder'        => $data['account_holder'], 
+            'account_number'        => $data['account_number'], 
+            'account_type'          => $data['account_type'],
+
+            'user_id'               => $user->id ,
+
+        ]) ;
+
+        return $user ;
     }
 }

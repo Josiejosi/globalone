@@ -4,18 +4,18 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>OGN</title>
-    <meta content="OGN" name="keywords">
-    <meta content="OGN" name="author">
-    <meta content="OGN, Peer to Peer Donations" name="description">
+    <title>ONE GLOBAL NETWORK</title>
+    <meta content="ONE GLOBAL NETWORK" name="keywords">
+    <meta content="ONE GLOBAL NETWORK" name="author">
+    <meta content="ONE GLOBAL NETWORK, Peer to Peer Donations" name="description">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="support_code" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset( 'css/frontend.css' ) }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset( 'images/favicon/apple-touch-icon.png' ) }}">
-    <link rel="icon" type="image/png" href="{{ asset( 'images/favicon/favicon-32x32.png' ) }}" sizes="32x32">
-    <link rel="icon" type="image/png" href="{{ asset( 'images/favicon/favicon-16x16.png' ) }}" sizes="16x16">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset( 'images/favicon.ico' ) }}">
+    <link rel="icon" type="image/png" href="{{ asset( 'images/favicon.ico' ) }}" sizes="32x32">
+    <link rel="icon" type="image/png" href="{{ asset( 'images/favicon.ico' ) }}" sizes="16x16">
 </head>
 
 <body>
@@ -25,7 +25,7 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="main-logo">
-                            <a href="#"><img src="{{ asset( 'images/logo/logo.png' ) }}" alt="BITROSEED"></a>
+                            <a href="#"><img src="{{ asset( 'images/logo/logo.png' ) }}" alt="ONE GLOBAL NETwORK"></a>
                         </div>
                     </div>
                     <div class="col-md-5 menu-column">
@@ -50,10 +50,10 @@
                                     @else
                                     <li><a href="{{ url( '/faq' ) }}">FAQ</a></li>
                                     @endif
-                                    @if ( Route::currentRouteName() === "join" )
-                                    <li class="current"><a href="{{ url( '/join' ) }}">Join Now</a></li>
+                                    @if ( Route::currentRouteName() === "register" )
+                                    <li class="current"><a href="{{ url( '/register' ) }}">Join Now</a></li>
                                     @else
-                                    <li><a href="{{ url( '/join' ) }}">Join Now</a></li>
+                                    <li><a href="{{ url( '/register' ) }}">Join Now</a></li>
                                     @endif
                                 </ul>
                                 <ul class="mobile-menu clearfix">
@@ -67,10 +67,10 @@
                                     @else
                                     <li><a href="{{ url( '/faq' ) }}">FAQ</a></li>
                                     @endif
-                                    @if ( Route::currentRouteName() === "join" )
-                                    <li class="current"><a href="{{ url( '/join' ) }}">Join Now</a></li>
+                                    @if ( Route::currentRouteName() === "register" )
+                                    <li class="current"><a href="{{ url( '/register' ) }}">Join Now</a></li>
                                     @else
-                                    <li><a href="{{ url( '/join' ) }}">Join Now</a></li>
+                                    <li><a href="{{ url( '/register' ) }}">Join Now</a></li>
                                     @endif
                                 </ul>
                             </div>
@@ -119,7 +119,7 @@
         <div class="footer-bottom text-center">
             <div class="container">
                 <div class="copyright">Copyright ©
-                    <?=date('Y')?> <a href="{{ url( '/' ) }}">OGN.</a> All rights reserved.</div>
+                    <?=date('Y')?> <a href="{{ url( '/' ) }}">ONE GLOBAL NETWORK.</a> All rights reserved.</div>
             </div>
         </div>
     </div>
