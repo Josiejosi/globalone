@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get( '/', 'FrontController@index' ) ;
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes(['verify' => true]);
+
+Route::get('/account/activation', 'ActivationController@index')->name('activation')->middleware('verified') ;
+Route::post('/account/activation', 'ActivationController@activate');
+Route::get('/home', 'HomeController@index')->name('home')->middleware( 'verified', 'activate' ) ;

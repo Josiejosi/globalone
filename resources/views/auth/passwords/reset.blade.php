@@ -24,7 +24,7 @@
                                             <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autofocus>
 
                                             @if ($errors->has('email'))
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="error" role="alert">
                                                     <strong>{{ $errors->first('email') }}</strong>
                                                 </span>
                                             @endif
@@ -38,7 +38,7 @@
                                             <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
                                             @if ($errors->has('password'))
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="error" role="alert">
                                                     <strong>{{ $errors->first('password') }}</strong>
                                                 </span>
                                             @endif
@@ -55,7 +55,7 @@
 
                                     <div class="form-group row mb-0">
                                         <div class="col-md-6 offset-md-4">
-                                            <button type="submit" class="btn btn-primary">
+                                            <button type="submit" class="thm-btn">
                                                 {{ __('Reset Password') }}
                                             </button>
                                         </div>

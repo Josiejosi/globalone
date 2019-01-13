@@ -2,15 +2,14 @@
 <html>
 
 <head>
-    <title>ONE GLOBAL NETwORK</title>
+    <title>ONE GLOBAL NETWORK</title>
     <meta charset="utf-8">
     <meta content="ie=edge" http-equiv="x-ua-compatible">
-    <meta content="ONE GLOBAL NETwORK" name="keywords">
-    <meta content="ONE GLOBAL NETwORK" name="author">
-    <meta content="ONE GLOBAL NETwORK, Peer to Peer Donations" name="description">
+    <meta content="ONE GLOBAL NETWORK" name="keywords">
+    <meta content="ONE GLOBAL NETWORK" name="author">
+    <meta content="ONE GLOBAL NETWORK, Peer to Peer Donations" name="description">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="support" content="{{ \App\Helpers\Helper::getSupportUserID() }}">
     <meta name="active" content="{{ auth()->user()->id }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset( 'images/favicon/apple-touch-icon.png' ) }}">
     <link rel="icon" type="image/png" href="{{ asset( 'images/favicon/favicon-32x32.png' ) }}" sizes="32x32">
@@ -34,7 +33,7 @@
         <div class="layout-w">
             <div class="menu-mobile menu-activated-on-click color-scheme-dark">
                 <div class="mm-logo-buttons-w">
-                    <a href="#"><img src="{{ asset( 'images/logo/logo.png' ) }}" alt="ONE GLOBAL NETwORK"></a>
+                    <a href="#"><img src="{{ asset( 'images/avatar.jpg' ) }}" alt="ONE GLOBAL NETWORK"></a>
                     <div class="mm-buttons">
                         <div class="mobile-menu-trigger">
                             <div class="os-icon os-icon-hamburger-menu-1"></div>
@@ -43,9 +42,9 @@
                 </div>
                 <div class="menu-and-user">
                     <div class="logged-user-w">
-                        <div class="avatar-w"><img alt="" src="{{ asset( $avatar ) }}"></div>
+                        <div class="avatar-w"><img alt="" src="{{ asset( 'images/avatar.jpg' ) }}"></div>
                             <div class="logged-user-info-w">
-                                <div class="logged-user-name">{{ $name }}</div>
+                                <div class="logged-user-name">{{ auth()->user()->name }} {{ auth()->user()->surname }}</div>
                                 <div class="logged-user-role">LEVEL {{ $level }}</div>
                             </div>
                         </div>
@@ -83,7 +82,7 @@
                             </a>
                             </li>
                             <!-- Start of admin -->
-                            @if ( $role === 2 || $role === 3 )
+                            @if ( auth()->user()->hasRole('admin') )
                             <li>
                                 <a href="{{ url('/block') }}">
                                 <div class="icon-w">
@@ -117,17 +116,7 @@
                             </a>
                             </li>
                             @endif
-                            <!-- end of admin -->
-                            @if ( \App\Helpers\Helper::isSupport() === true )
-                            <li>
-                                <a href="{{ url('/support') }}">
-                                <div class="icon-w">
-                                    <div class="os-icon os-icon-user-male-circle"></div>
-                                </div>
-                                <span>Support</span>
-                            </a>
-                            </li>
-                            @endif
+
                             <li>
                                 <a href="{{ url('/logout') }}">
                                 <div class="icon-w">
@@ -142,23 +131,23 @@
                 <div class="desktop-menu menu-side-w menu-activated-on-click">
                     <div class="logo-w">
                         <a class="logo" href="index.html">
-                        <img src="{{ asset( 'images/favicon/favicon-32x32.png' ) }}">
-                        <div class="logo-label">ITROSEED</div>
+                        <img src="{{ asset( 'images/logo/icon.png' ) }}">
+                        <div class="logo-label">OGN</div>
                     </a>
                     </div>
                     <div class="menu-and-user">
                         <div class="logged-user-w">
                             <div class="logged-user-i">
-                                <div class="avatar-w"><img alt="" src="{{ asset( $avatar ) }}"></div>
+                                <div class="avatar-w"><img alt="" src="{{ asset( 'images/avatar.jpg' ) }}"></div>
                                     <div class="logged-user-info-w">
-                                        <div class="logged-user-name">{{ $name }}</div>
+                                        <div class="logged-user-name">{{ auth()->user()->name }} {{ auth()->user()->surname }}</div>
                                         <div class="logged-user-role">LEVEL {{ $level }}</div>
                                     </div>
                                     <div class="logged-user-menu">
                                         <div class="logged-user-avatar-info">
-                                            <div class="avatar-w"><img alt="" src="{{ asset( $avatar ) }}"></div>
+                                            <div class="avatar-w"><img alt="" src="{{ asset( 'images/avatar.jpg' ) }}"></div>
                                                 <div class="logged-user-info-w">
-                                                    <div class="logged-user-name">{{ $name }}</div>
+                                                    <div class="logged-user-name">{{ auth()->user()->name }} {{ auth()->user()->surname }}</div>
                                                     <div class="logged-user-role">LEVEL {{ $level }}</div>
                                                 </div>
                                             </div>
@@ -203,7 +192,7 @@
                             </a>
                                     </li>
                                     <!-- Start of admin -->
-                                    @if ( $role === 2 || $role === 3 )
+                                    @if ( auth()->user()->hasRole('admin') )
                                     <li>
                                         <a href="{{ url('/block') }}">
                                 <div class="icon-w">
@@ -237,17 +226,7 @@
                             </a>
                                     </li>
                                     @endif
-                                    <!-- Start of admin -->
-                                    @if ( \App\Helpers\Helper::isSupport() === true )
-                                    <li>
-                                        <a href="{{ url('/support') }}">
-                                <div class="icon-w">
-                                    <div class="os-icon os-icon-user-male-circle"></div>
-                                </div>
-                                <span>Support</span>
-                            </a>
-                                    </li>
-                                    @endif
+
                                     <!-- end of admin -->
                                     <li>
                                         <a href="{{ url('/logout') }}">
@@ -261,10 +240,7 @@
                             </div>
                         </div>
                         <div class="content-w">
-                            <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">{{ $page_name }}</a></li>
-                                <li class="breadcrumb-item"><a href="index.html">{{ $page_description }}</a></li>
-                            </ul>
+
                             <div class="content-panel-toggler">
                                 <i class="os-icon os-icon-grid-squares-22"></i>
                                 <span>Sidebar</span>
@@ -301,6 +277,7 @@
                         </div>
                     </div>
                 </div>
+                 <script src="{{ asset( 'js/backend.js' ) }}"></script>
                 @yield('js')
 </body>
 

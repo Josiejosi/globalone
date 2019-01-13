@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAccountsTable extends Migration
+class CreateUserLevelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('accounts', function (Blueprint $table) {
-            $table->bigIncrements('id') ;
-            $table->string( 'bank_name' ) ;
-            $table->string( 'account_holder' ) ;
-            $table->string( 'account_number' ) ;
-            $table->string( 'account_type' ) ;
-            $table->bigInteger( 'user_id' )->unsigned() ;
+        Schema::create('user_levels', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->bigInteger( 'level_id' )->unsigned() ;
+            $table->bigInteger( 'user_id' )->unsigned();
 
+            $table->foreign('level_id')->references('id')->on('levels') ;
             $table->foreign('user_id')->references('id')->on('users') ;
         });
     }
@@ -32,6 +30,6 @@ class CreateAccountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('accounts');
+        Schema::dropIfExists('user_levels');
     }
 }

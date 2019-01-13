@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAccountsTable extends Migration
+class CreateProofOfActivationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('accounts', function (Blueprint $table) {
-            $table->bigIncrements('id') ;
-            $table->string( 'bank_name' ) ;
-            $table->string( 'account_holder' ) ;
-            $table->string( 'account_number' ) ;
-            $table->string( 'account_type' ) ;
+        Schema::create('proof_of_activations', function (Blueprint $table) {
+            $table->increments('id');
+
+            $table->string( 'proof_of_payment' ) ;
             $table->bigInteger( 'user_id' )->unsigned() ;
+
+            $table->timestamps() ;
 
             $table->foreign('user_id')->references('id')->on('users') ;
         });
@@ -32,6 +32,6 @@ class CreateAccountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('accounts');
+        Schema::dropIfExists('proof_of_activations');
     }
 }

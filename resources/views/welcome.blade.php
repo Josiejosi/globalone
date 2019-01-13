@@ -5,17 +5,30 @@
         <section class="ask-question">
            <div class="container">
              <div class="row">
+
+                @foreach( $levels as $level )
                <div class="col-md-6 col-sm-10 col-sm-offset-1 col-md-offset-0 col-xs-12">
                  <!--ask item -->
                  <div class="ask-box active">
-                    <div class="ask-circle">
-                      <span class="fa fa-usd"></span>
-                    </div>
                     <div class="ask-info">
-                      <h3 class="text-white">BITCOIN PRICE</h3>
+                        <table class="table table-condensed table-responsive table-bordered">
+
+                            <tbody>
+                                <tr>
+                                    <td class="text-right"><b>{{ $level->description }}</b></td>
+                                    <td class="text-left"><b>Amount</b></td>
+                                    <td class="text-left">R {{ $level->amount }} x {{ $level->auto_upgrade }}</td>
+                                    <td class="text-left"><b>Profit</b></td>
+                                    <td class="text-left">R {{ $level->profit }}</td>
+                                    <td class="text-left"><b>Upgrade</b></td>
+                                    <td class="text-left">R {{ $level->upgrade_amount }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                  </div>
                </div>
+               @endforeach
 
                 <div class="col-md-6 col-xs-12">
                     <div class="item clearfix">
@@ -26,19 +39,6 @@
                     </div>
                 </div>
 
-             </div>
-             <div class="row">
-                <div class="col-md-6 col-sm-10 col-sm-offset-1 col-md-offset-0 col-xs-12">
-                 <!--ask item -->
-                 <div class="ask-box active mt-30">
-                    <div class="ask-circle">
-                      <span class="fa fa-usd"></span>
-                    </div>
-                    <div class="ask-info">
-                      <h3 class="text-white">ETHEREUM PRICE</h3>
-                    </div>
-                 </div>
-               </div>
              </div>
            </div>
          </section>

@@ -261,7 +261,7 @@
                                                                     <td class="w580" width="580">
                                                                         <p align="left" class="article-title">
                                                                             <singleline label="Title">
-                                                                                Hi, {{ $name }}
+                                                                                Hi,
                                                                             </singleline>
                                                                         </p>
                                                                         <div align="left" class="article-content">
@@ -296,8 +296,8 @@
                                                                             <multiline label="Description">
                                                                                 <p align="center">
                                                                                    <hr /> 
-                                                                                    For any queries or request for information you can also contact FundVest at info@{{ config('app.name', 'Laravel') }}.com<br /><br />
-       Email : <a>info@{{ config('app.name', 'Laravel') }}.com</a>
+                                                                                    For any queries or request for information you can also contact FundVest at info@onegonetwork.com<br /><br />
+       Email : <a>info@onegonetwork.com</a>
                                                                                 </p>
                                                                             </multiline>
                                                                         </div>
@@ -355,7 +355,7 @@
                                 <td class="w640" width="640" height="60"  bgcolor="#ffffff" class="header-content article-content">
                                     <p align="center">
                                         
-                                        Copyright {{ date('Y') }}, All Rights © Reserved FundVest
+                                        Copyright {{ date('Y') }}, All Rights © Reserved OneGoalNetwork
                                     </p>
                                 </td>
                             </tr>

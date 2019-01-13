@@ -16,13 +16,63 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset( 'images/favicon.ico' ) }}">
     <link rel="icon" type="image/png" href="{{ asset( 'images/favicon.ico' ) }}" sizes="32x32">
     <link rel="icon" type="image/png" href="{{ asset( 'images/favicon.ico' ) }}" sizes="16x16">
+
+    <style type="text/css">
+        .error {
+            color: red ;
+            font-size: 10px ;
+        }
+
+        body {
+            font-size: 12px !important ;
+        }
+
+        .form-control {
+            border-radius: 0px !important ;
+            background-image: none !important ;
+        }
+
+        .thm-btn {
+            background: #76c3d7  !important  ;
+            border: 2px solid #76c3d7  !important  ;
+        }
+        .ask-question .ask-box.active, .ask-question .ask-box:hover {
+            background: #76c3d7  !important  ;
+        }
+
+        .header-div {
+
+             border-bottom: 1px solid #76c3d7  !important  ;
+             box-shadow: 1px 2px #ccc ;
+
+        }
+
+        .mainmenu-area .menu-column {
+            border: none !important ;
+        }
+
+        .ask-question .ask-box {
+            padding: 20px !important ;
+        }
+
+        .ask-question {
+            padding: 30px !important ;
+        }
+
+        .ask-question .ask-info {
+            margin: 0px !important ;
+            margin-top: 30px !important ;
+            color: #fff;
+        }
+
+    </style>
 </head>
 
 <body>
     <div class="boxed_wrapper" id="app">
         <div class="mainmenu-area stricky">
-            <div class="container">
-                <div class="row">
+            <div class="container-fluid">
+                <div class="row header-div ">
                     <div class="col-md-5">
                         <div class="main-logo">
                             <a href="#"><img src="{{ asset( 'images/logo/logo.png' ) }}" alt="ONE GLOBAL NETwORK"></a>
@@ -78,8 +128,24 @@
                     </div>
                     <div class="col-md-2">
                         <div class="right-area">
+
                             <div class="link_btn float_right">
+                                @guest
                                 <a href="{{ url( '/login' ) }}" class="thm-btn">Sign In</a>
+                                @else
+                                   <a class="btn btn-success btn-md" href="/home" >
+                                        <i class="fa fa-home"></i> {{ __('Dash') }}
+                                    </a>                                   
+                                    <a class="thm-btn" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                @endguest
                             </div>
                         </div>
                     </div>

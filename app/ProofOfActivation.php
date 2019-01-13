@@ -4,17 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Account extends Model {
-
-	public $timestamps = false ;
+class ProofOfActivation extends Model {
 
     protected $fillable = [
 
-        'bank_name', 
-        'account_holder', 
-        'account_number', 
-        'account_type',
-
+        'proof_of_payment', 
         'user_id',
 
     ] ;

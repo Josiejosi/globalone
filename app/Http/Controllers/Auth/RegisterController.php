@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\User ;
+use App\Role ;
+use App\Account ;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -54,9 +56,15 @@ class RegisterController extends Controller
             'surname'               => ['required', 'string', 'max:255'],
             'country'               => ['required', 'string', 'max:255'],
             'email'                 => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'username'              => ['required', 'string', 'username', 'max:255', 'unique:users'],
-            'phone'                 => ['required', 'string', 'phone', 'max:15', 'unique:users'],
+            'username'              => ['required', 'string', 'unique:users'],
+            'phone'                 => ['required', 'string', 'unique:users'],
             'password'              => ['required', 'string', 'min:6', 'confirmed'],
+
+            //Account validation.
+            //
+            'bank_name'             => ['required', 'string', 'max:255'],
+            'account_holder'        => ['required', 'string', 'min:6', 'max:255'],
+            'account_number'        => ['required', 'string', 'min:6', 'max:255'],
 
         ]);
     }
@@ -81,6 +89,10 @@ class RegisterController extends Controller
             'password'              => Hash::make($data['password']),
 
         ]);
+
+        $role                       = Role::where( 'name', 'member' )->first() ;
+
+        $user->roles()->attach( $role ) ;
 
         $account                    = Account::create([
 
