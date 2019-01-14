@@ -7,10 +7,10 @@
             <div class="sec-title text-center">
                 <h3>Reset Password</h3>
             </div>
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-6 col-md-offset-3">
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <div class="panel panel-default">
 
                                 <div class="panel-body">

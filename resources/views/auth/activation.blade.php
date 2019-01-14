@@ -13,11 +13,11 @@
                         <div class="alert alert-warning alert-important" role="alert">
                             <b>Note</b>: You need to send proof of activation, to proceed.
                         </div>
-                        @if ( session('activation') )
-                            <div class="alert alert-success" role="alert">
-                                {{ session('activation') }}
-                            </div>
-
+                        @if ( session('success') )
+                            <div class="alert alert-success" role="alert">{{ session('success') }}</div>
+                        @endif
+                        @if ( session('error') )
+                            <div class="alert alert-success" role="alert">{{ session('error') }}</div>
                         @endif
 
                             <div class="col-md-6 col-md-offset-3">
@@ -41,8 +41,8 @@
                                     <div class="form-group">
                                         <label for="proof_of_activation">Proof of payment</label>
                                         <input type="file" 
-                                            name="poa" 
-                                            class="form-control{{ $errors->has('poa') ? ' is-invalid' : '' }}" 
+                                            name="proof_of_activation" 
+                                            class="form-control{{ $errors->has('proof_of_activation') ? ' is-invalid' : '' }}" 
                                             placeholder="Upload your proof of payment here.">
                                         @if ($errors->has('proof_of_activation'))
                                             <span class="error" role="alert">

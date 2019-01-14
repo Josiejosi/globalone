@@ -7,27 +7,29 @@
              <div class="row">
 
                 @foreach( $levels as $level )
-               <div class="col-md-6 col-sm-10 col-sm-offset-1 col-md-offset-0 col-xs-12">
-                 <!--ask item -->
-                 <div class="ask-box active">
-                    <div class="ask-info">
-                        <table class="table table-condensed table-responsive table-bordered">
+                <div class="col-md-6 col-sm-10 col-sm-offset-1 col-md-offset-0 col-xs-12">
+                    <div class="ask-box active">
+                        <div class="ask-info">
+                            
+                            <table class="table table-condensed table-responsive table-bordered">
 
-                            <tbody>
-                                <tr>
-                                    <td class="text-right"><b>{{ $level->description }}</b></td>
-                                    <td class="text-left"><b>Amount</b></td>
-                                    <td class="text-left">R {{ $level->amount }} x {{ $level->auto_upgrade }}</td>
-                                    <td class="text-left"><b>Profit</b></td>
-                                    <td class="text-left">R {{ $level->profit }}</td>
-                                    <td class="text-left"><b>Upgrade</b></td>
-                                    <td class="text-left">R {{ $level->upgrade_amount }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-right"><b>{{ $level->description }}</b></td>
+                                        <td class="text-left"><b>Amount</b></td>
+                                        <td class="text-left">R {{ $level->amount }} x {{ $level->auto_upgrade }}</td>
+                                        <td class="text-left"><b>Profit</b></td>
+                                        <td class="text-left">R {{ $level->profit }}</td>
+                                        <td class="text-left"><b>Upgrade</b></td>
+                                        <td class="text-left">R {{ $level->upgrade_amount }}</td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+
+                        </div>
                     </div>
-                 </div>
-               </div>
+                </div>
                @endforeach
 
                 <div class="col-md-6 col-xs-12">

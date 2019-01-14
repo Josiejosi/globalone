@@ -296,7 +296,7 @@
                                                                             <multiline label="Description">
                                                                                 <p align="center">
                                                                                    <hr /> 
-                                                                                    For any queries or request for information you can also contact FundVest at info@onegonetwork.com<br /><br />
+                                                                                    For any queries or request for information you can also contact OneGoalNetwork at info@onegonetwork.com<br /><br />
        Email : <a>info@onegonetwork.com</a>
                                                                                 </p>
                                                                             </multiline>

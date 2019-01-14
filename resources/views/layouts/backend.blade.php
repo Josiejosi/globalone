@@ -33,7 +33,7 @@
         <div class="layout-w">
             <div class="menu-mobile menu-activated-on-click color-scheme-dark">
                 <div class="mm-logo-buttons-w">
-                    <a href="#"><img src="{{ asset( 'images/avatar.jpg' ) }}" alt="ONE GLOBAL NETWORK"></a>
+                    <a href="#"><img src="{{ asset( 'images/logo/logo.png' ) }}" alt="ONE GLOBAL NETWORK"></a>
                     <div class="mm-buttons">
                         <div class="mobile-menu-trigger">
                             <div class="os-icon os-icon-hamburger-menu-1"></div>
@@ -51,70 +51,79 @@
                         <ul class="main-menu">
                             <li>
                                 <a href="{{ url('/home') }}">
-                                <div class="icon-w">
-                                    <div class="os-icon os-icon-window-content"></div>
-                                </div>
-                                <span>Dashboard</span>
-                            </a>
+                                    <div class="icon-w">
+                                        <div class="os-icon os-icon-window-content"></div>
+                                    </div>
+                                    <span>Dashboard</span>
+                                </a>
                             </li>
                             <li>
-                                <a href="{{ url('/wallet') }}">
-                                <div class="icon-w">
-                                    <div class="os-icon os-icon-wallet-loaded"></div>
-                                </div>
-                                <span>Wallet</span>
-                            </a>
+                                <a href="{{ url('/uplift') }}">
+                                    <div class="icon-w">
+                                        <div class="os-icon os-icon-hierarchy-structure-2"></div>
+                                    </div>
+                                    <span>Uplift</span>
+                                </a>
                             </li>
                             <li>
-                                <a href="{{ url('/transactions') }}">
-                                <div class="icon-w">
-                                    <div class="os-icon os-icon-hierarchy-structure-2"></div>
-                                </div>
-                                <span>Transactions</span>
-                            </a>
+                                <a href="{{ url('/downlift') }}">
+                                    <div class="icon-w">
+                                        <div class="os-icon os-icon-hierarchy-structure-2"></div>
+                                    </div>
+                                    <span>Down lift</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/account') }}">
+                                    <div class="icon-w">
+                                        <div class="os-icon os-icon-wallet-loaded"></div>
+                                    </div>
+                                    <span>Account</span>
+                                </a>
                             </li>
                             <li>
                                 <a href="{{ url('/profile') }}">
-                                <div class="icon-w">
-                                    <div class="os-icon os-icon-user-male-circle"></div>
-                                </div>
-                                <span>Profile</span>
-                            </a>
+                                    <div class="icon-w">
+                                        <div class="os-icon os-icon-user-male-circle"></div>
+                                    </div>
+                                    <span>Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/password') }}">
+                                    <div class="icon-w">
+                                        <div class="os-icon os-icon-user-male-circle"></div>
+                                    </div>
+                                    <span>Password</span>
+                                </a>
                             </li>
                             <!-- Start of admin -->
                             @if ( auth()->user()->hasRole('admin') )
                             <li>
                                 <a href="{{ url('/block') }}">
-                                <div class="icon-w">
-                                    <div class="os-icon os-icon-user-male-circle"></div>
-                                </div>
-                                <span>Block</span>
-                            </a>
+                                    <div class="icon-w">
+                                        <div class="os-icon os-icon-user-male-circle"></div>
+                                    </div>
+                                    <span>Block User</span>
+                                </a>
                             </li>
                             <li>
-                                <a href="{{ url('/member') }}">
-                                <div class="icon-w">
-                                    <div class="os-icon os-icon-user-male-circle"></div>
-                                </div>
-                                <span>New Member</span>
-                            </a>
+                                <a href="{{ url('/user/activate') }}">
+                                    <div class="icon-w">
+                                        <div class="os-icon os-icon-user-male-circle"></div>
+                                    </div>
+                                    <span>Activate User</span>
+                                </a>
                             </li>
                             <li>
-                                <a href="{{ url('/donation') }}">
-                                <div class="icon-w">
-                                    <div class="os-icon os-icon-hierarchy-structure-2"></div>
-                                </div>
-                                <span>Admin Donations</span>
-                            </a>
+                                <a href="{{ url('/allocate') }}">
+                                    <div class="icon-w">
+                                        <div class="os-icon os-icon-hierarchy-structure-2"></div>
+                                    </div>
+                                    <span>Manual Allocation</span>
+                                </a>
                             </li>
-                            <li>
-                                <a href="{{ url('/settings') }}">
-                                <div class="icon-w">
-                                    <div class="os-icon os-icon-ui-46"></div>
-                                </div>
-                                <span>Settings</span>
-                            </a>
-                            </li>
+
                             @endif
 
                             <li>
@@ -161,80 +170,87 @@
                                 <ul class="main-menu">
                                     <li>
                                         <a href="{{ url('/home') }}">
-                                <div class="icon-w">
-                                    <div class="os-icon os-icon-window-content"></div>
-                                </div>
-                                <span>Dashboard</span>
-                            </a>
+                                            <div class="icon-w">
+                                                <div class="os-icon os-icon-window-content"></div>
+                                            </div>
+                                            <span>Dashboard</span>
+                                        </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('/wallet') }}">
-                                <div class="icon-w">
-                                    <div class="os-icon os-icon-wallet-loaded"></div>
-                                </div>
-                                <span>Wallet</span>
-                            </a>
+                                        <a href="{{ url('/uplift') }}">
+                                            <div class="icon-w">
+                                                <div class="os-icon os-icon-hierarchy-structure-2"></div>
+                                            </div>
+                                            <span>Uplift</span>
+                                        </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('/transactions') }}">
-                                <div class="icon-w">
-                                    <div class="os-icon os-icon-hierarchy-structure-2"></div>
-                                </div>
-                                <span>Transactions</span>
-                            </a>
+                                        <a href="{{ url('/downlift') }}">
+                                            <div class="icon-w">
+                                                <div class="os-icon os-icon-hierarchy-structure-2"></div>
+                                            </div>
+                                            <span>Down lift</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/account') }}">
+                                            <div class="icon-w">
+                                                <div class="os-icon os-icon-wallet-loaded"></div>
+                                            </div>
+                                            <span>Account</span>
+                                        </a>
                                     </li>
                                     <li>
                                         <a href="{{ url('/profile') }}">
-                                <div class="icon-w">
-                                    <div class="os-icon os-icon-user-male-circle"></div>
-                                </div>
-                                <span>Profile</span>
-                            </a>
+                                            <div class="icon-w">
+                                                <div class="os-icon os-icon-user-male-circle"></div>
+                                            </div>
+                                            <span>Profile</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/password') }}">
+                                            <div class="icon-w">
+                                                <div class="os-icon os-icon-user-male-circle"></div>
+                                            </div>
+                                            <span>Password</span>
+                                        </a>
                                     </li>
                                     <!-- Start of admin -->
                                     @if ( auth()->user()->hasRole('admin') )
                                     <li>
                                         <a href="{{ url('/block') }}">
-                                <div class="icon-w">
-                                    <div class="os-icon os-icon-user-male-circle"></div>
-                                </div>
-                                <span>Block</span>
-                            </a>
+                                            <div class="icon-w">
+                                                <div class="os-icon os-icon-user-male-circle"></div>
+                                            </div>
+                                            <span>Block User</span>
+                                        </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('/member') }}">
-                                <div class="icon-w">
-                                    <div class="os-icon os-icon-user-male-circle"></div>
-                                </div>
-                                <span>New Member</span>
-                            </a>
+                                        <a href="{{ url('/user/activate') }}">
+                                            <div class="icon-w">
+                                                <div class="os-icon os-icon-user-male-circle"></div>
+                                            </div>
+                                            <span>Activate User</span>
+                                        </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('/donation') }}">
-                                <div class="icon-w">
-                                    <div class="os-icon os-icon-hierarchy-structure-2"></div>
-                                </div>
-                                <span>Admin Donations</span>
-                            </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/settings') }}">
-                                <div class="icon-w">
-                                    <div class="os-icon os-icon-ui-46"></div>
-                                </div>
-                                <span>Settings</span>
-                            </a>
+                                        <a href="{{ url('/allocate') }}">
+                                            <div class="icon-w">
+                                                <div class="os-icon os-icon-hierarchy-structure-2"></div>
+                                            </div>
+                                            <span>Manual Allocation</span>
+                                        </a>
                                     </li>
                                     @endif
-
                                     <!-- end of admin -->
                                     <li>
                                         <a href="{{ url('/logout') }}">
-                                <div class="icon-w">
-                                    <div class="os-icon os-icon-signs-11"></div>
-                                </div>
-                                <span>Logout</span>
-                            </a>
+                                            <div class="icon-w">
+                                                <div class="os-icon os-icon-signs-11"></div>
+                                            </div>
+                                            <span>Logout</span>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -278,6 +294,10 @@
                     </div>
                 </div>
                  <script src="{{ asset( 'js/backend.js' ) }}"></script>
+
+                 <script type="text/javascript">
+                     $('#flash-overlay-modal').modal();
+                 </script>
                 @yield('js')
 </body>
 

@@ -84,5 +84,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne( Account::class ) ;
 
     }
+    /**
+    * Users's level.
+    */
+    public function level() {
+
+        return $this->hasOne( Level::class ) ;
+
+    }
 
 }
