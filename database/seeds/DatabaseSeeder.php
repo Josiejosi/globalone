@@ -8,6 +8,7 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      *
      * @return void
+     * php artisan make:seeder LevelSeeder ; php artisan make:seeder RoleTableSeeder ; php artisan make:seeder UserTableSeeder ;
      */
     public function run()
     {

@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller {
-    
+class BlockUserController extends Controller
+{
     public function __construct() { $this->middleware('auth') ; }
 
     public function index() {
 
-        return view( 'home', ['level' => 1,] ) ;
+        return view( 'block', ['level' => 1,] ) ;
 
     }
 }

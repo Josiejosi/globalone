@@ -47,3 +47,5 @@ Route::get('/member/{username}', 'MemberController@index') ;
 
 Route::get('/user/activate/', 'ActivationController@activate_user') ;
 Route::get('/user/activate/{user_id}', 'ActivationController@post_activate_user') ;
+Route::get('/block', 'BlockUserController@index') ;
+Route::get('/allocate', 'AllocateController@index') ;
