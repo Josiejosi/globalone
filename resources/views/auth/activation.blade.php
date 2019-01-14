@@ -89,7 +89,7 @@
                                             <td class="text-left">1C9Nq69ZNNSL17GKrGRiTEyYLcpsoM5z47</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-right">BITCOIN ADDRESS:</td>
+                                            <td class="text-right">ETHERIUM ADDRESS:</td>
                                             <td class="text-left">0x7F2f507A0E26bFDEB5C692015A547F673bd211cd</td>
                                         </tr>
                                     </tbody>
