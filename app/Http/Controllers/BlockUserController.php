@@ -10,7 +10,7 @@ class BlockUserController extends Controller
 
     public function index() {
 
-        return view( 'block', ['level' => 1,] ) ;
+        return view( 'block', ['level' => 1, 'users' => User::all()] ) ;
 
     }
 }
