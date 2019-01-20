@@ -56,5 +56,7 @@ Route::get('/outgoing', 'OutgoingAmountController@index')->name('outgoing')->mid
 
 Route::get('/user/activate/', 'ActivationController@activate_user') ;
 Route::get('/user/activate/{user_id}', 'ActivationController@post_activate_user') ;
+Route::get('/user/block/{user_id}', 'BlockUserController@post_block_user') ;
+Route::get('/user/unblock/{user_id}', 'BlockUserController@post_unblock_user') ;
 Route::get('/block', 'BlockUserController@index') ;
 Route::get('/allocate', 'AllocateController@index') ;

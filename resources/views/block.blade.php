@@ -30,20 +30,23 @@
 
                                                 @if ( ! $user->hasRole( 'admin' ) )
 
-                                                    @if ( $user->is_active === 1 )
-
-                                                        <tr>
-                                                            <td class="text-left">{{ $user->username }}</td>
-                                                            <td class="text-left">{{ $user->name }} {{ $user->surname }}</td>
-                                                            <td class="text-center">{{ $user->created_at }}</td>
-                                                            <td class="text-center">
-                                                                <a href="#" data-toggle="modal" data-target="#block-user-model" class="btn btn-sm btn-danger">
-                                                                    <i class="os-icon os-icon-ui-49"></i> Block
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        
-                                                    @endif
+                                                    <tr>
+                                                        <td class="text-left">{{ $user->username }}</td>
+                                                        <td class="text-left">{{ $user->name }} {{ $user->surname }}</td>
+                                                        <td class="text-center">{{ $user->created_at }}</td>
+                                                        <td class="text-center">
+                                                            @if ( $user->is_active === 1 )
+                                                            <a href="{{ url( 'user/block/' ) }}/{{  $user->id  }}" class="btn btn-sm btn-danger">
+                                                                <i class="os-icon os-icon-ui-49"></i> Block
+                                                            </a>
+                                                            @endif
+                                                            @if ( $user->is_active === 0 )
+                                                            <a href="{{ url( 'user/unblock/' ) }}/{{  $user->id  }}" class="btn btn-sm btn-danger">
+                                                                <i class="os-icon os-icon-ui-49"></i> UnBlock
+                                                            </a>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
 
                                                 @endif
 

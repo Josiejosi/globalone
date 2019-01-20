@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Btc ;
 use App\User ;
 use App\Role ;
 use App\Account ;
@@ -42,5 +43,13 @@ class UserTableSeeder extends Seeder
             'user_id'               => $user->id ,
 
         ]) ;
+
+        Btc::create([
+
+            'address'               => '1C9Nq69ZNNSL17GKrGRiTEyYLcpsoM5z47', 
+            'user_id'               => $user->id,
+
+        ]) ;
+
     }
 }

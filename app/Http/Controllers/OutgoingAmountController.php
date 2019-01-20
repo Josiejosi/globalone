@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\OutgoingAmounts ;
+use App\IncomingAmount ;
 
 class OutgoingAmountController extends Controller
 {
@@ -14,10 +15,7 @@ class OutgoingAmountController extends Controller
     public function index() {
 
 
-
-    	$outgoing = OutgoingAmounts::whereSenderId( auth()->user()->id )->get() ;
-
-    	dump($outgoing) ;
+    	$outgoing = IncomingAmount::whereSenderId( auth()->user()->id )->get() ;
  
         return view( 'outgoing', ['level' => 1, 'outgoing' => $outgoing ] ) ;
 
