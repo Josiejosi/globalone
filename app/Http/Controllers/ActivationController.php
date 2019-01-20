@@ -117,7 +117,7 @@ class ActivationController extends Controller
         $matches = preg_replace("/[^0-9.]/", "", $matches[1]);
         $amount =  round($matches, 2);
         $total = substr($amount, mb_strlen($amounts));
-        $total = $total / 100 ;
+        //$total = $total / 100 ;
         return number_format($total,2) ;
     }
 
