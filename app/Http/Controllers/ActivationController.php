@@ -57,7 +57,6 @@ class ActivationController extends Controller
 
             $incoming = IncomingAmount::whereSenderId( auth()->user()->id  )->first() ; //->whereReceiverId( $request->receiver_id )->first() ;
 
-            dump( $incoming  ) ;
 
             if ( $incoming->status == 0 ) {
                 

@@ -13,13 +13,13 @@
                         <div class="col-sm-6">
                             <a class="element-box el-tablo" href="#">
                                 <div class="label">Funds Send</div>
-                                <div class="value">R {{ round( (float) $incoming_sum, 2 ) }} ZAR</div>
+                                <div class="value">R {{ round( (float) $outgoing_sum, 2 ) }} ZAR</div>
                             </a>
                         </div>
                         <div class="col-sm-6">
                             <a class="element-box el-tablo" href="#">
                                 <div class="label">Funds Received</div>
-                                <div class="value">R {{ round( (float) $outgoing_sum, 2 ) }} ZAR</div>
+                                <div class="value">R {{ round( (float) $incoming_sum, 2 ) }} ZAR</div>
                             </a>
                         </div>
                     </div>
