@@ -12,6 +12,7 @@
 */
 
 Route::get( '/', 'FrontController@index' ) ;
+Route::get( '/faq', 'FrontController@faq' ) ;
 
 Auth::routes();
 

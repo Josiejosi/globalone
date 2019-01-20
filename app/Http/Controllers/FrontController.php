@@ -13,4 +13,10 @@ class FrontController extends Controller {
         return view( 'welcome', ['levels' => Level::all()] ) ;
 
     }
+
+    public function faq() {
+
+        return view( 'faq') ;
+
+    }
 }
