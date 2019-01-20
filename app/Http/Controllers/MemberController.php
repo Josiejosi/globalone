@@ -113,8 +113,8 @@ class MemberController extends Controller
 
 	        'amount' 				=> 250,
 	        'status' 				=> 0,
-	        'receiver_id'			=> $upliner->id,
-	        'sender_id' 			=> $user->id,
+	        'receiver_id'			=> $user->id,
+	        'sender_id' 			=> $upliner->id,
 
         ]) ;
 
@@ -122,8 +122,8 @@ class MemberController extends Controller
 
 	        'amount' 				=> 250,
 	        'status' 				=> 0,
-	        'receiver_id'			=> $user->id,
-	        'sender_id' 			=> $upliner->id,
+	        'receiver_id'			=> $upliner->id,
+	        'sender_id' 			=> $user->id,
 
         ]) ;
 
