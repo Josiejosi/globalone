@@ -143,6 +143,20 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="btc_address" class="col-md-4 col-form-label text-right">{{ __('BITCOIN Address') }}:</label>
+
+                                <div class="col-md-6">
+                                    <input id="btc_address" type="text" class="form-control{{ $errors->has('btc_address') ? ' is-invalid' : '' }}" name="btc_address" value="{{ old('btc_address') }}" required>
+
+                                    @if ($errors->has('btc_address'))
+                                        <span class="error" role="alert">
+                                            <strong>{{ $errors->first('btc_address') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <label for="username" class="col-md-4 col-form-label text-right">{{ __('Username') }}:</label>
 
                                 <div class="col-md-6">
@@ -175,6 +189,25 @@
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="upliner" class="col-md-4 col-form-label text-right">{{ __('Upliner') }}:</label>
+
+                                <div class="col-md-6">
+                                    
+                                    <input id="upliner" 
+                                            type="text" 
+                                            class="form-control{{ $errors->has('upliner') ? ' is-invalid' : '' }}" 
+                                            name="upliner" 
+                                            value="{{ old('upliner') }}">
+
+                                    @if ($errors->has('upliner'))
+                                        <span class="error" role="alert">
+                                            <strong>{{ $errors->first('upliner') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
 

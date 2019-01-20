@@ -19,6 +19,7 @@
 
                 <div class="up-contents">
                     <div class="m-b">
+                        <div class="row m-b">
                             <div class="col-sm-6 b-r b-b">
                                 <div class="el-tablo centered padded-v">
                                     <div class="value">0</div>
@@ -40,51 +41,37 @@
         <div class="col-sm-7">
             <div class="element-wrapper">
                 <div class="element-box">
-                    <form action="{{ url( '/profile' ) }}" method="POST">
+                    <form action="{{ url( '/btc' ) }}" method="POST">
                         @csrf
                         <div class="element-info">
                             <div class="element-info-with-icon">
                                 <div class="element-info-icon">
-                                    <div class="os-icon os-icon-user-male-circle"></div>
+                                    <div class="os-icon os-icon-wallet-loaded"></div>
                                 </div>
                                 <div class="element-info-text">
-                                    <h5 class="element-inner-header">Password Settings</h5>
+                                    <h5 class="element-inner-header">BTC Settings</h5>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
+                        <div class="form-group">
 
-                                    <label for="password"> Password</label>
-                                    <input class="form-control" 
-                                           name="password" 
-                                           placeholder="Password"
-                                           type="password">
-                                    @if ($errors->has('password'))
+                            <label for="btc_Address"> BTC Address</label>
+                            <input class="form-control" 
+                                   name="btc_Address"
+                                   value="{{ auth()->user()->btc->address }}" 
+                                   placeholder="BTC Address" 
+                                   type="text">
+                                    @if ($errors->has('btc_Address'))
                                         <div class="help-block form-text text-muted form-control-feedback">
-                                            {{ $errors->first('password') }}
+                                            {{ $errors->first('btc_Address') }}
                                         </div>
                                     @endif
 
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-
-                                    <label for="password_confirmation">Confirm Password</label>
-                                    <input class="form-control" 
-                                           placeholder="Confirm Password"
-                                           value=""  
-                                           name="password_confirmation" 
-                                           type="password">
-
-                                </div>
-                            </div>
                         </div>
 
+
                         <div class="form-buttons-w">
-                            <button class="btn btn-primary" type="submit"> Update</button>
+                            <button class="btn btn-primary" type="submit"> Change</button>
                         </div>
 
                     </form>

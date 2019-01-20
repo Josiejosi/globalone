@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Order ;
+use App\Upliner ;
 
 class UpliftController extends Controller
 {
@@ -12,7 +12,7 @@ class UpliftController extends Controller
 
     public function index() {
 
-        return view( 'uplift', ['level' => 1, 'orders' => Order::whereUserId( auth()->user()->id )->orderBy( 'id', 'desc' )->get() ] ) ;
+        return view( 'uplift', ['level' => 1, 'upliners' => Upliner::whereUserId( auth()->user()->id )->orderBy( 'id', 'desc' )->get() ] ) ;
 
     }
 }

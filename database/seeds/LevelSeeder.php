@@ -38,7 +38,7 @@ class LevelSeeder extends Seeder
 	    Level::create([
 
 	        'name'				=> 3, 
-	        'description'		=> "Level 4", 
+	        'description'		=> "Level 3", 
 	        'amount' 			=> "1000", 
 	        'upgrade_amount'	=> "2000",
 	        'auto_upgrade' 		=> "3",
@@ -52,7 +52,7 @@ class LevelSeeder extends Seeder
 	        'description'		=> "Level 4", 
 	        'amount' 			=> "2000", 
 	        'upgrade_amount'	=> "0",
-	        'auto_upgrade' 		=> "3",
+	        'auto_upgrade' 		=> "0",
 	        'profit' 			=> "6000",
 
 	    ]) ;

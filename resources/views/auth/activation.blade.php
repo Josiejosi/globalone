@@ -26,11 +26,16 @@
                                     @csrf
                                     <div class="form-group">
                                         <label for="username">Username</label>
+                                        
                                         <input type="text" 
                                             name="username" 
                                             value="{{ auth()->user()->username, '' }}" 
                                             class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" 
                                             placeholder="username or email-address proof-of-activation">
+
+                                        <input type="hidden" 
+                                            name="receiver_id" 
+                                            value="{{ $upliner->id }}">
 
                                         @if ($errors->has('username'))
                                             <span class="error" role="alert">
@@ -64,37 +69,21 @@
                             <!-- Default panel contents -->
                             <div class="panel-heading">BANKING DETAILS</div>
                             <div class="panel-body">
-                                <div class="alert alert-info alert-important">Use your username from registration as reference</div>
                                 <table class="table">
 
                                     <tbody>
-                                        <tr><td class="text-right">Amount:</td><td class="text-left"><b>R 250 ZAR OR $ 18 USD</b></td></tr>
-                                        <tr><td class="text-right">Bank:</td><td class="text-left">ABSA</td></tr>
-                                        <tr><td class="text-right">Account #:</td><td class="text-left">000000000000</td></tr>
-                                        <tr><td class="text-right">Branch Code:</td><td class="text-left">00000</td></tr>
-                                        <tr><td class="text-right">Branch Name:</td><td class="text-left">Branch</td></tr>
-                                        <tr><td class="text-right">Reference #:</td><td class="text-left">Username or email-address</td></tr>
+                                        <tr><td class="text-right">Amount:</td><td class="text-left">
+                                            <b>R 250 ZAR OR $ {{ $USD }} USD</b>
+                                        </td></tr>
+                                        <tr><td class="text-right">Username:</td><td class="text-left">{{ $upliner->username }}</td></tr>
+                                        <tr><td class="text-right">Name:</td><td class="text-left">{{ $upliner->name }} {{ $upliner->surname }}</td></tr>
+                                        <tr><td class="text-right">Bank:</td><td class="text-left">{{ $upliner->account->bank_name }}</td></tr>
+                                        <tr><td class="text-right">Account #:</td><td class="text-left">{{ $upliner->account->account_number }}</td></tr>
+                                        <tr><td class="text-right">Account Type:</td><td class="text-left">{{ $upliner->account->account_type }}</td></tr>
+                                        <tr><td class="text-right">BITCOIN ADDRESS:</td><td class="text-left">{{ $upliner->btc->address }}</td></tr>
                                     </tbody>
                                 </table>
-                            </div>
-                             <!-- Default panel contents -->
-                            <div class="panel-heading">Crypto currency details</div>
-                            <div class="panel-body">
-                                <div class="alert alert-info alert-important">Use your username from registration as reference</div>
-                                <table class="table">
-
-                                    <tbody>
-                                        <tr>
-                                            <td class="text-right">BITCOIN ADDRESS:</td>
-                                            <td class="text-left">1C9Nq69ZNNSL17GKrGRiTEyYLcpsoM5z47</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-right">ETHERIUM ADDRESS:</td>
-                                            <td class="text-left">0x7F2f507A0E26bFDEB5C692015A547F673bd211cd</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>                                   
+                            </div>                                  
 
                         </div>
                     </div>

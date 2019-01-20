@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Btc ;
 use App\User ;
 use App\Role ;
 use App\Account ;
@@ -67,6 +68,10 @@ class RegisterController extends Controller
             'account_holder'        => ['required', 'string', 'min:6', 'max:255'],
             'account_number'        => ['required', 'string', 'min:6', 'max:255'],
 
+            //BTC validation.
+            //
+            'btc_address'           => ['required', 'string', 'max:255'],
+
         ]);
     }
 
@@ -109,6 +114,14 @@ class RegisterController extends Controller
         UserLevel::create([
 
             'level_id'              => 1, 
+            'user_id'               => $user->id,
+
+
+        ]) ;
+
+        Btc::create([
+
+            'btc_address'           => $data["btc_address"], 
             'user_id'               => $user->id,
 
 

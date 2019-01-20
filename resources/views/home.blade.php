@@ -60,17 +60,12 @@
             <div class="element-wrapper">
                 <div class="element-content">
                     <div class="row">
-                        <div class="col-sm-4">
-                            <a class="btn btn-success btn-block btn-lg" href="{{ url( '/send/cash' ) }}">
-                                <div class="label">Send Cash</div>
-                            </a>
-                        </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <a class="btn btn-info btn-block btn-lg" href="{{ url( '/receive/cash' ) }}">
                                 <div class="label">Withdraw</div>
                             </a>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <a class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#upgrade-model" >
                                 <div class="label">Upgrade</div>
                             </a>

@@ -20,7 +20,7 @@
                                     <label for="email" class="col-md-4 col-form-label text-right">{{ __('E-Mail Address / Username') }}: </label>
 
                                     <div class="col-md-6">
-                                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} field-inner" name="email" value="{{ old('email') }}" required autofocus>
+                                        <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} field-inner" name="email" value="{{ old('email') }}" required autofocus>
 
                                         @if ($errors->has('email'))
                                             <span class="error" role="alert">

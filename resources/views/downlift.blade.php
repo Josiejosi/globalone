@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="element-wrapper">
-        <h6 class="element-header">Down-lift( s )</h6>
+        <h6 class="element-header">Downliners( s )</h6>
         <div class="element-box">
 
             <div class="table-responsive">
@@ -18,46 +18,31 @@
                                         <tr>
                                             <th>Username</th>
                                             <th>Name</th>
-                                            <th>Created Date</th>
-                                            <th>Status</th>
-                                            <th>Actions</th>
+                                            <th>Join Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
-                                        @if ( count( $orders ) > 0 )
+                                        @if ( count( $downliners ) > 0 )
 
-                                            @foreach( $orders as $user )
+                                            @foreach( $downliners as $downliner )
 
-                                                @if ( ! $user->hasRole( 'admin' ) )
+                                                <?php 
+                                                    $user = \App\User::find( $downliner->downliner_id ) ;
+                                                ?>
 
-                                                    @if ( $user->is_active === 0 )
-                                                        @if ( $user->proof )
-
-                                                        <tr>
-                                                            <td class="text-left">{{ $user->username }}</td>
-                                                            <td class="text-left">{{ $user->name }} {{ $user->surname }}</td>
-                                                            <td class="text-center">{{ $user->created_at }}</td>
-                                                            <td class="text-center">{{ $user->created_at }}</td>
-                                                            <td class="text-center">
-                                                                <a href="{{ '/user/activate' }}/{{ $user->id }}" class="btn btn-sm btn-warning">
-                                                                    <i class="os-icon os-icon-ui-49"></i> Activate
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-
-                                                        @endif
-                                                        
-                                                    @endif
-
-                                                @endif
+                                                <tr>
+                                                    <td class="text-left">{{ $user->username }}</td>
+                                                    <td class="text-left">{{ $user->name }} {{ $user->surname }}</td>
+                                                    <td class="text-center">{{ $user->created_at }}</td>
+                                                </tr>
 
                                             @endforeach
 
                                         @else
 
                                             <tr>
-                                                <td class="text-center" colspan="5">You have no transactions.</td>
+                                                <td class="text-center" colspan="3">No downliners.</td>
                                             </tr>
 
                                         @endif                                                                  

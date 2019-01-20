@@ -58,19 +58,35 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ url('/uplift') }}">
+                                <a href="{{ url('/upliner') }}">
                                     <div class="icon-w">
                                         <div class="os-icon os-icon-hierarchy-structure-2"></div>
                                     </div>
-                                    <span>Uplift</span>
+                                    <span>Upliner</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ url('/downlift') }}">
+                                <a href="{{ url('/downliner') }}">
                                     <div class="icon-w">
                                         <div class="os-icon os-icon-hierarchy-structure-2"></div>
                                     </div>
-                                    <span>Down lift</span>
+                                    <span>Downliner</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/incoming') }}">
+                                    <div class="icon-w">
+                                        <div class="os-icon os-icon-hierarchy-structure-2"></div>
+                                    </div>
+                                    <span>Incoming Amount</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/outgoing') }}">
+                                    <div class="icon-w">
+                                        <div class="os-icon os-icon-hierarchy-structure-2"></div>
+                                    </div>
+                                    <span>Outgoing Amount </span>
                                 </a>
                             </li>
                             <li>
@@ -78,7 +94,15 @@
                                     <div class="icon-w">
                                         <div class="os-icon os-icon-wallet-loaded"></div>
                                     </div>
-                                    <span>Account</span>
+                                    <span>Update Account</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/btc') }}">
+                                    <div class="icon-w">
+                                        <div class="os-icon os-icon-wallet-loaded"></div>
+                                    </div>
+                                    <span>Change BTC Address</span>
                                 </a>
                             </li>
                             <li>
@@ -86,7 +110,7 @@
                                     <div class="icon-w">
                                         <div class="os-icon os-icon-user-male-circle"></div>
                                     </div>
-                                    <span>Profile</span>
+                                    <span>Update Profile</span>
                                 </a>
                             </li>
                             <li>
@@ -94,7 +118,7 @@
                                     <div class="icon-w">
                                         <div class="os-icon os-icon-user-male-circle"></div>
                                     </div>
-                                    <span>Password</span>
+                                    <span>Update Password</span>
                                 </a>
                             </li>
                             <!-- Start of admin -->
@@ -125,14 +149,21 @@
                             </li>
 
                             @endif
-
                             <li>
-                                <a href="{{ url('/logout') }}">
-                                <div class="icon-w">
-                                    <div class="os-icon os-icon-signs-11"></div>
-                                </div>
-                                <span>Logout</span>
-                            </a>
+                                <a  href="{{ route('logout') }}"
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <div class="icon-w">
+                                        <div class="os-icon os-icon-signs-11"></div>
+                                    </div>
+                                    <span>{{ __('Logout') }}</span>
+                                    
+                                </a>
+                            </li>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+
                             </li>
                         </ul>
                     </div>
@@ -177,19 +208,35 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('/uplift') }}">
+                                        <a href="{{ url('/upliner') }}">
                                             <div class="icon-w">
                                                 <div class="os-icon os-icon-hierarchy-structure-2"></div>
                                             </div>
-                                            <span>Uplift</span>
+                                            <span>Upliner</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('/downlift') }}">
+                                        <a href="{{ url('/downliner') }}">
                                             <div class="icon-w">
                                                 <div class="os-icon os-icon-hierarchy-structure-2"></div>
                                             </div>
-                                            <span>Down lift</span>
+                                            <span>Downliner</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/incoming') }}">
+                                            <div class="icon-w">
+                                                <div class="os-icon os-icon-hierarchy-structure-2"></div>
+                                            </div>
+                                            <span>Incoming Amount</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/outgoing') }}">
+                                            <div class="icon-w">
+                                                <div class="os-icon os-icon-hierarchy-structure-2"></div>
+                                            </div>
+                                            <span>Outgoing Amount </span>
                                         </a>
                                     </li>
                                     <li>
@@ -198,6 +245,14 @@
                                                 <div class="os-icon os-icon-wallet-loaded"></div>
                                             </div>
                                             <span>Account</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/btc') }}">
+                                            <div class="icon-w">
+                                                <div class="os-icon os-icon-wallet-loaded"></div>
+                                            </div>
+                                            <span>Change BTC Address</span>
                                         </a>
                                     </li>
                                     <li>
@@ -243,15 +298,20 @@
                                         </a>
                                     </li>
                                     @endif
-                                    <!-- end of admin -->
                                     <li>
-                                        <a href="{{ url('/logout') }}">
+                                        <a  href="{{ route('logout') }}"
+                                           onclick="event.preventDefault(); document.getElementById('logout-form-desktop').submit();">
                                             <div class="icon-w">
                                                 <div class="os-icon os-icon-signs-11"></div>
                                             </div>
-                                            <span>Logout</span>
+                                            <span>{{ __('Logout') }}</span>
+                                            
                                         </a>
                                     </li>
+
+                                    <form id="logout-form-desktop" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                                 </ul>
                             </div>
                         </div>

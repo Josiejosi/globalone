@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="element-wrapper">
-        <h6 class="element-header">Up-lift( s )</h6>
+        <h6 class="element-header">Upliners( s )</h6>
         <div class="element-box">
 
             <div class="table-responsive">
@@ -16,27 +16,25 @@
                                 <table class="table table-bordered table-lg table-v2 table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Order #</th>
-                                            <th>Amount</th>
-                                            <th>Date</th>
-                                            <th>Member</th>
-                                            <th>Actions</th>
+                                            <th>Username</th>
+                                            <th>Name</th>
+                                            <th>Join Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
-                                        @if ( count( $orders ) > 0 )
+                                        @if ( count( $upliners ) > 0 )
 
-                                            @foreach( $orders as $order )
+                                            @foreach( $upliners as $upliner )
+
+                                                <?php 
+                                                    $user = \App\User::find( $upliner->upliner_id ) ;
+                                                ?>
 
                                                 <tr>
-                                                    <td class="text-left">{{ $order->order_number }}</td>
-                                                    <td class="text-left">R {{ $order->amount }} ZAR</td>
-                                                    <td class="text-center">{{ $order->created_at }}</td>
-                                                    <td class="text-center">Not assigned</td>
-                                                    <td class="text-center">
-                                                        <span class="label label-waring">Pending</span>
-                                                    </td>
+                                                    <td class="text-left">{{ $user->username }}</td>
+                                                    <td class="text-left">{{ $user->name }} {{ $user->surname }}</td>
+                                                    <td class="text-center">{{ $user->created_at }}</td>
                                                 </tr>
 
                                             @endforeach
@@ -44,7 +42,7 @@
                                         @else
 
                                             <tr>
-                                                <td class="text-center" colspan="5">You have no transactions.</td>
+                                                <td class="text-center" colspan="3">No upliners.</td>
                                             </tr>
 
                                         @endif                                                                  

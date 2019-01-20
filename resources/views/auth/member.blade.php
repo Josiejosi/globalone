@@ -8,27 +8,13 @@
             <div class="row justify-content-center">
                 <div class="col-md-8 col-md-offset-2">
                     <div class="panel panel-default">
-                       <form method="POST" action="{{ route('register') }}">
+                       <form method="POST" action="{{ url( '/member' ) }}">
                             @csrf
                         <div class="panel-heading">
                             <h3>Register</h3>
                         </div>
 
                         <div class="panel-body">
-
-                            <div class="form-group row">
-                                <label for="upliter" class="col-md-4 col-form-label text-right">{{ __('Uplifter') }}:</label>
-
-                                <div class="col-md-6">
-                                    <input id="upliter" type="text" readonly class="form-control{{ $errors->has('upliter') ? ' is-invalid' : '' }}" name="upliter" value="{{ $upliter }}" required>
-
-                                    @if ($errors->has('upliter'))
-                                        <span class="danger" role="alert">
-                                            <strong>{{ $errors->first('upliter') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
 
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-right">{{ __('Name') }}:</label>
@@ -157,6 +143,15 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="btc_address" class="col-md-4 col-form-label text-right">{{ __('BITCOIN Address') }}:</label>
+
+                                <div class="col-md-6">
+                                    <input id="btc_address" type="text" class="form-control{{ $errors->has('btc_address') ? ' is-invalid' : '' }}" name="btc_address" value="{{ old('btc_address') }}">
+
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <label for="username" class="col-md-4 col-form-label text-right">{{ __('Username') }}:</label>
 
                                 <div class="col-md-6">
@@ -189,6 +184,25 @@
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="upliner" class="col-md-4 col-form-label text-right">{{ __('Upliner') }}:</label>
+
+                                <div class="col-md-6">
+                                    
+                                    <input id="upliner" 
+                                            type="text" 
+                                            class="form-control{{ $errors->has('upliner') ? ' is-invalid' : '' }}" 
+                                            name="upliner" 
+                                            value="{{ $upliter }}">
+
+                                    @if ($errors->has('upliner'))
+                                        <span class="error" role="alert">
+                                            <strong>{{ $errors->first('upliner') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
 

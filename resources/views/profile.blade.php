@@ -23,13 +23,13 @@
                             <div class="col-sm-6 b-r b-b">
                                 <div class="el-tablo centered padded-v">
                                     <div class="value">0</div>
-                                    <div class="label">Referral Points</div>
+                                    <div class="label">Upliners</div>
                                 </div>
                             </div>
                             <div class="col-sm-6 b-b">
                                 <div class="el-tablo centered padded-v">
                                     <div class="value">0</div>
-                                    <div class="label">Contributions Made</div>
+                                    <div class="label">Downliners</div>
                                 </div>
                             </div>
                         </div>

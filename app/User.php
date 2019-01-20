@@ -85,6 +85,14 @@ class User extends Authenticatable implements MustVerifyEmail
 
     }
     /**
+    * User's btc account.
+    */
+    public function btc() {
+
+        return $this->hasOne( Btc::class ) ;
+
+    }
+    /**
     * Users's level.
     */
     public function level() {
