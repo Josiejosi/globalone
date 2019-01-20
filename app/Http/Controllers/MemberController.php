@@ -142,7 +142,7 @@ class MemberController extends Controller
         ]) ;
 
 
-        if ( Auth::attempt([ 'email' => $request->email, 'password' => $request->password ]) ) {
+        if ( auth()->attempt([ 'email' => $request->email, 'password' => $request->password ]) ) {
 
 	        flash( "Account created successfully, now you need to activate by sending POP to Up-liner" )->success() ;
 	        return redirect( "account/activation" ) ;
