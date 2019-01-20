@@ -49,11 +49,11 @@ class ActivationController extends Controller
 	    	ProofOfActivation::create([
 
 		        'proof_of_payment'  	=> $proof_of_activation_path, 
-		        'user_id' 				=> $user->id ,
+		        'user_id' 				=> auth()->user()->id ,
 
 	    	]) ;//receiver_id
 
-            $incoming = IncomingAmount::whereSenderId( $user->id )->whereReceiverId( $request->receiver_id )->first() ;
+            $incoming = IncomingAmount::whereSenderId( auth()->user()->id  )->first() ; //->whereReceiverId( $request->receiver_id )->first() ;
 
             if ( $incoming->status == 0 ) {
                 
