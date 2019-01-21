@@ -28,6 +28,53 @@
 
         </div>
     </div> 
+
+    <div class="row">
+        <div class="col-sm-12">
+
+            <div class="element-wrapper">
+
+                <h5 class="element-header">Upgrade</h5>
+                <div class="element-content">
+                    <div class="row">
+                        <div class="col-sm-8 col-offset-2">
+                            @if ( $incoming_sum == 750 && $build["level"] === 2 )
+
+                                <a class="btn btn-success btn-block btn-lg" data-toggle="modal" data-target="#upgrade-model">upgrade</a>
+
+                            @elseif ( $incoming_sum == 750 && $build["level"] === 1 )
+
+                                <a class="btn btn-success btn-block btn-lg" href="{{ url( '/upgrade' ) }}">Upgrade</a>
+
+                            @elseif ( $incoming_sum == 1500 && $build["level"] === 2 )
+
+                                <a class="btn btn-success btn-block btn-lg" data-toggle="modal" data-target="#upgrade-model">upgrade</a>
+
+                            @elseif ( $incoming_sum == 3000 && $build["level"] === 2 )
+
+                                <a class="btn btn-success btn-block btn-lg" href="{{ url( '/upgrade' ) }}">Upgrade</a>
+
+                            @elseif ( $incoming_sum == 3000 && $build["level"] === 3 )
+
+                                <a class="btn btn-success btn-block btn-lg" data-toggle="modal" data-target="#upgrade-model">upgrade</a>
+
+                            @elseif ( $incoming_sum == 6000 && $build["level"] === 4 )
+
+                                <a class="btn btn-success btn-block btn-lg" href="{{ url( '/upgrade' ) }}">Start from Level 1</a>
+
+                            @else
+
+                                <a class="btn btn-success btn-block btn-lg" data-toggle="modal" data-target="#already-model">upgrade</a>
+                                
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>          
+
+        </div>
+    </div> 
+
     <div class="row">
         <div class="col-sm-12">
 
@@ -77,7 +124,6 @@
                                 $sender = \App\User::find( $income->sender_id ) ;
                             ?>
 
-                        
                             <tr>
                                 <td class="text-left">{{ $sender->username }}</td>
                                 <td class="text-left">{{ $sender->name }} {{ $sender->surname }}</td>
@@ -158,6 +204,7 @@
 
     @endif
 
+
     <div class="modal" tabindex="-1" id="upgrade-model" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -168,8 +215,28 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h5>Are you sure you want to upgrade? </h5>
-                    <p>This action will find a member to assign to you</p>
+                    <h5>You can only upgrade when your funds are fully confirmed? </h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a href="{{ url( '/upgrade' ) }}" class="btn btn-primary">Yes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal" tabindex="-1" id="already-model" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Already Upgraded</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5>You have already upgraded to this level? </h5>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

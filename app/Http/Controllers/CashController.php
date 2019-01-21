@@ -9,6 +9,8 @@ use App\Order ;
 
 use App\Jobs\NewOrderJob ;
 
+use App\Classes\Helpers ;
+
 class CashController extends Controller
 {
     
@@ -16,7 +18,7 @@ class CashController extends Controller
 
     public function send() {
 
-        return view( 'send', ['level' => 1,] ) ;
+        return view( 'send', [ 'build' => Helpers::build('Home'), ] ) ;
 
     }
 

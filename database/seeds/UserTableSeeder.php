@@ -6,6 +6,7 @@ use App\Btc ;
 use App\User ;
 use App\Role ;
 use App\Account ;
+use App\UserLevel ;
 
 class UserTableSeeder extends Seeder
 {
@@ -25,6 +26,7 @@ class UserTableSeeder extends Seeder
             'phone'                 => "0000000000", 
             'country'               => "German", 
             'is_active'             => 0, 
+            'is_blocked'            => 0, 
             'password'              => Hash::make( "TY5X^5fE!bTt8ske" ),
 
         ]);
@@ -41,6 +43,13 @@ class UserTableSeeder extends Seeder
             'account_type'          => "Current",
 
             'user_id'               => $user->id ,
+
+        ]) ;
+
+        UserLevel::create([
+
+            'level_id'              => 1, 
+            'user_id'               => $user->id,
 
         ]) ;
 

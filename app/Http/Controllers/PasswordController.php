@@ -6,13 +6,15 @@ use Illuminate\Http\Request;
 
 use App\User ;
 
+use App\Classes\Helpers ;
+
 class PasswordController extends Controller
 {
     public function __construct() { $this->middleware('auth') ; }
 
     public function index() {
 
-        return view( 'password', ['level' => 1,] ) ;
+        return view( 'password', ['build' => Helpers::build('Home')] ) ;
 
     }
 

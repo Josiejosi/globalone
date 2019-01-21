@@ -14,6 +14,7 @@ use App\Upliner ;
 use App\Downliner ;
 use App\IncomingAmount ;
 use App\OutgoingAmounts ;
+use App\Classes\Helpers ;
 
 
 class MemberController extends Controller
@@ -26,7 +27,7 @@ class MemberController extends Controller
 
     	}
 
-        return view( 'auth.member', [ 'upliter' => $username, ] ) ;
+        return view( 'auth.member', [ 'upliter' => $username, 'build' => Helpers::build('Home')] ) ;
 
     }
 
@@ -38,9 +39,9 @@ class MemberController extends Controller
             'name'                  => 'required|string|max:255',
             'surname'               => 'required|string|max:255',
             'country'               => 'required|string|max:255',
-            'email'                 => 'required|string|email|max:255|unique:users',
+            'email'                 => 'required|string|email|max:255',
             'username'              => 'required|string|unique:users',
-            'phone'                 => 'required|string|unique:users',
+            'phone'                 => 'required|string',
             'password'              => 'required|string|min:6|confirmed',
 
             //Account validation.
@@ -56,14 +57,23 @@ class MemberController extends Controller
 
 	    ]);
 
+        $upliner                    = User::whereUsername( $request->upliner )->first() ;
+
 	    if ( User::whereUsername( $request->upliner )->count() === 0 ) {
 
-	    	flash( "Please provide your up-liner" )->error() ;
+	    	flash()->overlay( "Please provide your up-liner" )->error() ;
 
 	    	return redirect()->back() ;
 
 	    }
 
+        if ( Downliner::whereUserId( $upliner->id )->count() >= 3 ) {
+
+            flash()->overlay( "Up-liner link already full, please contact support for a new link." )->error() ;
+
+            return redirect()->back() ;
+
+        }
 
         $user                       = User::create([
 
@@ -74,6 +84,7 @@ class MemberController extends Controller
             'phone'                 => $request->phone, 
             'country'               => $request->country, 
             'is_active'             => 0, 
+            'is_blocked'            => 0, 
             'password'              => Hash::make( $request->password ),
 
         ]);
@@ -107,7 +118,7 @@ class MemberController extends Controller
 
         ]) ;
 
-        $upliner 					= User::whereUsername( $request->upliner )->first() ;
+        
 
         OutgoingAmounts::create([
 
@@ -134,12 +145,18 @@ class MemberController extends Controller
 
         ]) ;
 
-        Upliner::create([
+        if ( Upliner::whereUserId( $upliner->id )->count() < 3 ) {
 
-	        'user_id'				=> $user->id,
-	        'upliner_id' 			=> $upliner->id,
+            Upliner::create([
 
-        ]) ;
+                'user_id'               => $user->id,
+                'upliner_id'            => $upliner->id,
+
+            ]) ;
+
+        }
+
+
 
 
         if ( auth()->attempt([ 'email' => $request->email, 'password' => $request->password ]) ) {

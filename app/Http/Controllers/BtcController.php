@@ -6,13 +6,15 @@ use Illuminate\Http\Request;
 
 use App\Btc ;
 
+use App\Classes\Helpers ;
+
 class BtcController extends Controller
 {
     public function __construct() { $this->middleware('auth') ; }
 
     public function index() {
 
-        return view( 'btc', ['level' => 1,] ) ;
+        return view( 'btc', [ 'build' => Helpers::build('Home'), ] ) ;
 
     }
 

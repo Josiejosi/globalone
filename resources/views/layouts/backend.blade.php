@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>ONE GLOBAL NETWORK</title>
+    <title>ONE GLOBAL NETWORK | {{ $build["title"] }}</title>
     <meta charset="utf-8">
     <meta content="ie=edge" http-equiv="x-ua-compatible">
     <meta content="ONE GLOBAL NETWORK" name="keywords">
@@ -45,7 +45,7 @@
                         <div class="avatar-w"><img alt="" src="{{ asset( 'images/avatar.jpg' ) }}"></div>
                             <div class="logged-user-info-w">
                                 <div class="logged-user-name">{{ auth()->user()->name }} {{ auth()->user()->surname }}</div>
-                                <div class="logged-user-role">LEVEL {{ $level }}</div>
+                                <div class="logged-user-role">LEVEL {{ $build["level"] }}</div>
                             </div>
                         </div>
                         <ul class="main-menu">
@@ -181,14 +181,14 @@
                                 <div class="avatar-w"><img alt="" src="{{ asset( 'images/avatar.jpg' ) }}"></div>
                                     <div class="logged-user-info-w">
                                         <div class="logged-user-name">{{ auth()->user()->name }} {{ auth()->user()->surname }}</div>
-                                        <div class="logged-user-role">LEVEL {{ $level }}</div>
+                                        <div class="logged-user-role">LEVEL {{ $build["level"] }}</div>
                                     </div>
                                     <div class="logged-user-menu">
                                         <div class="logged-user-avatar-info">
                                             <div class="avatar-w"><img alt="" src="{{ asset( 'images/avatar.jpg' ) }}"></div>
                                                 <div class="logged-user-info-w">
                                                     <div class="logged-user-name">{{ auth()->user()->name }} {{ auth()->user()->surname }}</div>
-                                                    <div class="logged-user-role">LEVEL {{ $level }}</div>
+                                                    <div class="logged-user-role">LEVEL {{ $build["level"] }}</div>
                                                 </div>
                                             </div>
                                             <div class="bg-icon"><i class="os-icon os-icon-wallet-loaded"></i></div>

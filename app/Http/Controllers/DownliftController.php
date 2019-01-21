@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Downliner ;
+use App\Classes\Helpers ;
 
 class DownliftController extends Controller
 {
@@ -12,7 +13,10 @@ class DownliftController extends Controller
 
     public function index() {
 
-        return view( 'downlift', ['level' => 1, 'downliners' => Downliner::whereUserId( auth()->user()->id )->orderBy( 'id', 'desc' )->get() ] ) ;
+        return view( 'downlift', [
+        	'build' 		=> Helpers::build('Home'), 
+        	'downliners' 	=> Downliner::whereUserId( auth()->user()->id )->orderBy( 'id', 'desc' )->get() 
+        ]) ;
 
     }
 }

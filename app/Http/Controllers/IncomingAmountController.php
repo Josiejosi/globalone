@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\User ;
 use App\IncomingAmount ;
 
+use App\Classes\Helpers ;
+
 class IncomingAmountController extends Controller
 {
  
@@ -14,24 +16,27 @@ class IncomingAmountController extends Controller
 
     public function index() {
 
-    	$incoming = IncomingAmount::whereReceiverId( auth()->user()->id )->get() ;
+    	$incoming               = IncomingAmount::whereReceiverId( auth()->user()->id )->get() ;
  
-        return view( 'incoming', ['level' => 1, 'incoming' => $incoming ] ) ;
+        return view( 'incoming', [
+            'build'             => Helpers::build('Home'),
+            'incoming'          => $incoming 
+        ]) ;
 
     }
 
 
     public function approve( $transaction_id ) {
 
-    	$incoming = IncomingAmount::find( $transaction_id ) ;
+    	$incoming               = IncomingAmount::find( $transaction_id ) ;
 
-    	$sender_id = $incoming->sender_id ;
+    	$sender_id              = $incoming->sender_id ;
 
     	if ( $incoming->status == 1 ) {
     		
     		$incoming->update([ 'status' => 2 ]) ;
 
-    		$user = User::find($sender_id) ;
+    		$user              = User::find($sender_id) ;
 
     		if ( $user->is_active == 0 ) {
 

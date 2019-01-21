@@ -102,23 +102,30 @@ class ActivationController extends Controller
 
     public function convertCurrency(  $amounts, $from_currency, $to_currency  ) {
 
-        $url = 'https://www.google.co.za/search?q='.$amounts.'+' . $from_currency . '+to+' . $to_currency ;
 
-        $cSession = curl_init();
 
-        curl_setopt($cSession, CURLOPT_URL, $url);
-        curl_setopt($cSession, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($cSession, CURLOPT_SSL_VERIFYPEER, true);
+        try {
+             $url = 'https://www.google.co.za/search?q='.$amounts.'+' . $from_currency . '+to+' . $to_currency ;
 
-        $buffer = curl_exec($cSession);
-        curl_close($cSession);
+            $cSession = curl_init();
 
-        preg_match("/<div class=\"J7UKTe\">(.*)<\/div>/",$buffer, $matches);
-        $matches = preg_replace("/[^0-9.]/", "", $matches[1]);
-        $amount =  round($matches, 2);
-        $total = substr($amount, mb_strlen($amounts));
-        //$total = $total / 100 ;
-        return number_format($total,2) ;
+            curl_setopt($cSession, CURLOPT_URL, $url);
+            curl_setopt($cSession, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($cSession, CURLOPT_SSL_VERIFYPEER, true);
+
+            $buffer = curl_exec($cSession);
+            curl_close($cSession);
+
+            preg_match("/<div class=\"J7UKTe\">(.*)<\/div>/",$buffer, $matches);
+            $matches = preg_replace("/[^0-9.]/", "", $matches[1]);
+            $amount =  round($matches, 2);
+            $total = substr($amount, mb_strlen($amounts));
+            //$total = $total / 100 ;
+            return number_format($total,2) ;           
+        } catch (Exception $e) {
+            return 20;
+        }
+
     }
 
 }

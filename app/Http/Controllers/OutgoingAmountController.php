@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\OutgoingAmounts ;
 use App\IncomingAmount ;
 
+use App\Classes\Helpers ;
+
 class OutgoingAmountController extends Controller
 {
     //incoming
@@ -17,7 +19,7 @@ class OutgoingAmountController extends Controller
 
     	$outgoing = IncomingAmount::whereSenderId( auth()->user()->id )->get() ;
  
-        return view( 'outgoing', ['level' => 1, 'outgoing' => $outgoing ] ) ;
+        return view( 'outgoing', [ 'build' => Helpers::build('Home'), 'outgoing' => $outgoing ] ) ;
 
     }
 }

@@ -6,13 +6,15 @@ use Illuminate\Http\Request;
 
 use App\User ;
 
+use App\Classes\Helpers ;
+
 class ProfileController extends Controller
 {
     public function __construct() { $this->middleware('auth') ; }
 
     public function index() {
 
-        return view( 'profile', ['level' => 1,] ) ;
+        return view( 'profile', ['build' => Helpers::build('Home')] ) ;
 
     }
 

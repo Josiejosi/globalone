@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Account ;
+use App\Classes\Helpers ;
 
 class AccountController extends Controller
 {
@@ -12,7 +13,7 @@ class AccountController extends Controller
 
     public function index() {
 
-        return view( 'account', ['level' => 1,] ) ;
+        return view( 'account', [ 'build' => Helpers::build('Home'), ] ) ;
 
     }
 

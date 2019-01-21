@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Classes\Helpers ;
+
 class UpgradeController extends Controller
 {
     
@@ -16,7 +18,7 @@ class UpgradeController extends Controller
      */
     public function index() {
 
-        return view( 'upgrade', ['level' => 1,] ) ;
+        return view( 'upgrade', ['build' => Helpers::build('Home')] ) ;
 
     }
 }
