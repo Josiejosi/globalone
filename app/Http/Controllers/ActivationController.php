@@ -16,6 +16,8 @@ use App\IncomingAmount ;
 
 use App\UserLevel ;
 
+use App\Classes\Helpers ;
+
 class ActivationController extends Controller
 {
     public function index() {
@@ -29,6 +31,7 @@ class ActivationController extends Controller
     	return view( 'auth.activation', [ 
             "USD"                       => $this->convertCurrency( 250, "ZAR", "USD" ) ,
             "upliner"                   => $upliner ,
+
         ] ) ;
 
     }
@@ -82,6 +85,7 @@ class ActivationController extends Controller
 
     		'level' 					=> 1,
     		'users'						=> User::all(),
+            'build'                     => Helpers::build('Home')
     		
     	]) ;
 
