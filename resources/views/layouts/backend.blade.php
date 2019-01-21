@@ -132,6 +132,14 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="{{ url('/user/admin') }}">
+                                    <div class="icon-w">
+                                        <div class="os-icon os-icon-user-male-circle"></div>
+                                    </div>
+                                    <span>New Admin</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{{ url('/user/activate') }}">
                                     <div class="icon-w">
                                         <div class="os-icon os-icon-user-male-circle"></div>
@@ -279,6 +287,14 @@
                                                 <div class="os-icon os-icon-user-male-circle"></div>
                                             </div>
                                             <span>Block User</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/user/admin') }}">
+                                            <div class="icon-w">
+                                                <div class="os-icon os-icon-user-male-circle"></div>
+                                            </div>
+                                            <span>New Admin</span>
                                         </a>
                                     </li>
                                     <li>

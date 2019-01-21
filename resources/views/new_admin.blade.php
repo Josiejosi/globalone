@@ -1,20 +1,20 @@
-@extends('layouts.frontend')
+@extends('layouts.backend')
 
 @section('content')
 
-    <section class="contact_us">
-        
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="panel panel-default">
-                       <form method="POST" action="{{ url( '/member' ) }}">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <div class="element-wrapper">
+
+                <h3 class="element-header">New Admin</h6>
+                <div class="element-content">
+
+                       <form method="POST" action="{{ url( '/user/admin' ) }}">
                             @csrf
-                        <div class="panel-heading">
-                            <h3>Register</h3>
-                        </div>
 
                         <div class="panel-body">
+
 
                             @if ($errors->any())
                                 <div class="alert alert-danger">
@@ -197,31 +197,13 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label for="upliner" class="col-md-4 col-form-label text-right">{{ __('Upliner') }}:</label>
-
-                                <div class="col-md-6">
-                                    
-                                    <input id="upliner" 
-                                            type="text" 
-                                            class="form-control{{ $errors->has('upliner') ? ' is-invalid' : '' }}" 
-                                            name="upliner" 
-                                            value="{{ $upliter }}">
-
-                                    @if ($errors->has('upliner'))
-                                        <span class="error" role="alert">
-                                            <strong>{{ $errors->first('upliner') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
 
                         </div>
 
                         <div class="panel-footer text-center">
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 col-md-offset-3">
-                                    <button type="submit" class="thm-btn">
+                                    <button type="submit" class="btn btn-success">
                                         {{ __('Register') }}
                                     </button>
                                 </div>
@@ -230,10 +212,11 @@
                     </div>
 
                     </form>
-                </div>
-            </div>
-        </div>
 
-    </section>
+                </div>
+            </div>          
+
+        </div>
+    </div> 
 
 @endsection

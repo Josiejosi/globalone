@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\User ;
+use App\Classes\Helpers ;
 
 class BlockUserController extends Controller
 {
@@ -12,7 +13,7 @@ class BlockUserController extends Controller
 
     public function index() {
 
-        return view( 'block', ['level' => 1, 'users' => User::all()] ) ;
+        return view( 'block', [ 'build' => Helpers::build('Home'), 'users' => User::all()] ) ;
 
     }
 

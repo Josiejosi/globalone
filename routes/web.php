@@ -61,3 +61,5 @@ Route::get('/user/block/{user_id}', 'BlockUserController@post_block_user') ;
 Route::get('/user/unblock/{user_id}', 'BlockUserController@post_unblock_user') ;
 Route::get('/block', 'BlockUserController@index') ;
 Route::get('/allocate', 'AllocateController@index') ;
+Route::get('/user/admin', 'AdminController@index') ;
+Route::post('/user/admin', 'AdminController@store') ;
