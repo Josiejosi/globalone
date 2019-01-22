@@ -73,7 +73,7 @@
 
                                     <tbody>
                                         <tr><td class="text-right">Amount:</td><td class="text-left">
-                                            <b>R 250 ZAR OR $ {{ $USD }} USD</b>
+                                            <b>R 250 ZAR OR $ 20 USD</b>
                                         </td></tr>
                                         <tr><td class="text-right">Username:</td><td class="text-left">{{ $upliner->username }}</td></tr>
                                         <tr><td class="text-right">Name:</td><td class="text-left">{{ $upliner->name }} {{ $upliner->surname }}</td></tr>

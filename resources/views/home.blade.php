@@ -152,6 +152,51 @@
 
     @if ( count( $outgoing ) > 0 )
 
+        @foreach( $outgoing as $outcome )
+
+            @if ( $outcome->status == 0 )
+
+            <?php 
+                $upliner = \App\User::find( $outcome->receiver_id ) ;
+            ?>
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="element-wrapper">
+
+                        <h5 class="element-header">Upliner Banking Details</h5>
+                        <div class="element-content">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="element-box el-tablo">
+                                        <table class="table">
+
+                                            <tbody>
+                                                <tr><td class="text-right">Amount:</td><td class="text-left">
+                                                    <b>R {{ $outcome->amount }} ZAR</b>
+                                                </td></tr>
+                                                <tr><td class="text-right">Username:</td><td class="text-left">{{ $upliner->username }}</td></tr>
+                                                <tr><td class="text-right">Name:</td><td class="text-left">{{ $upliner->name }} {{ $upliner->surname }}</td></tr>
+                                                <tr><td class="text-right">Bank:</td><td class="text-left">{{ $upliner->account->bank_name }}</td></tr>
+                                                <tr><td class="text-right">Account #:</td><td class="text-left">{{ $upliner->account->account_number }}</td></tr>
+                                                <tr><td class="text-right">Account Type:</td><td class="text-left">{{ $upliner->account->account_type }}</td></tr>
+                                                <tr><td class="text-right">BITCOIN ADDRESS:</td><td class="text-left">{{ $upliner->btc->address }}</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>          
+
+                </div>
+            </div> 
+
+             @endif 
+
+        @endforeach 
+
     <div class="row">
         <div class="col-sm-12">
             <div class="table-responsive">
@@ -219,7 +264,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <a href="{{ url( '/upgrade' ) }}" class="btn btn-primary">Yes</a>
                 </div>
             </div>
         </div>
@@ -240,7 +284,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <a href="{{ url( '/upgrade' ) }}" class="btn btn-primary">Yes</a>
                 </div>
             </div>
         </div>

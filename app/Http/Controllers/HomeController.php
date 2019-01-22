@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\IncomingAmount ;
+use App\Downliner ;
 use App\UserLevel ;
+use App\User ;
 
 use App\Classes\Helpers ;
 
@@ -45,26 +47,35 @@ class HomeController extends Controller {
 
 	        $level_id 				= 1 ;
 
-	        if ( $incoming_sum == 750 || $incoming_sum == 500 ) {
+	        $is_upgraded 			= false ;
+	        $upgrade_amount 		= 500 ;
+
+	        if ( $incoming_sum == 750 ) {
 
 		        if ( $level->level_id == 1 ) {
 		        	$level_id 		= 2 ;
+		        	$is_upgraded 	= true ;
+		        	$upgrade_amount = 500 ;
 		        }
 
 	    	}
 
-	    	if ( $incoming_sum == 1000 || $incoming_sum == 1500 ) {
+	    	if ( $incoming_sum == 1500 ) {
 
 		        if ( $level->level_id == 2 ) {
 		        	$level_id 		= 3 ;
+		        	$is_upgraded 	= true ;
+		        	$upgrade_amount = 1000 ;
 		        }
 
 	    	}
 
-	    	if ( $incoming_sum == 2000 || $incoming_sum == 3000 ) {
+	    	if ( $incoming_sum == 3000 ) {
 
 		        if ( $level->level_id == 3 ) {
 		        	$level_id 		= 4 ;
+		        	$is_upgraded 	= true ;
+		        	$upgrade_amount = 2000 ;
 		        }
 		    }
 
@@ -72,18 +83,56 @@ class HomeController extends Controller {
 
 		        if ( $level->level_id == 4 ) {
 		        	$level_id 		= 1 ;
+		        	$is_upgraded 	= true ;
+		        	$upgrade_amount = 250 ;
 		        }
 
 	    	}
 
+	    	dump($level_id) ;
+	    	dump($is_upgraded) ;
+	    	dump($upgrade_amount) ;
+
+	    	//die() ;
+
 	        $level->delete() ;
 
-	        UserLevel::create([
+	        if ( $is_upgraded ) {	
 
-	            'level_id'              => $level_id, 
-	            'user_id'               => auth()->user()->id,
+	        	dump("I got here.") ;
 
-	        ]) ;
+		        UserLevel::create([
+
+		            'level_id'              => $level_id, 
+		            'user_id'               => auth()->user()->id,
+
+		        ]) ;        	
+
+	        	#create aoutgoing transaction.
+
+	        	$downliners 			= Downliner::whereUserId( auth()->user()->id )->get() ;
+
+	        	foreach ( $downliners as $downliner ) {
+
+	        		$user_id 			= $downliner->downliner_id ;
+
+			        IncomingAmount::create([
+
+				        'amount' 		=> $upgrade_amount,
+				        'status' 		=> 0,
+				        'receiver_id'	=> auth()->user()->id,
+				        'sender_id' 	=> $user_id,
+
+			        ]) ;
+
+	        		$user 				= User::find( $user_id ) ;
+
+	        		# send email with member details.
+
+
+	        	}
+
+	        }
 
 	        
 
