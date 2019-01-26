@@ -70,18 +70,9 @@ class HomeController extends Controller {
 
 	    	}
 
-	    	if ( $incoming_sum == 3000 ) {
+		    if ( $incoming_sum == 3000 ) {
 
 		        if ( $level->level_id == 3 ) {
-		        	$level_id 		= 4 ;
-		        	$is_upgraded 	= true ;
-		        	$upgrade_amount = 2000 ;
-		        }
-		    }
-
-		    if ( $incoming_sum == 6000 ) {
-
-		        if ( $level->level_id == 4 ) {
 		        	$level_id 		= 1 ;
 		        	$is_upgraded 	= true ;
 		        	$upgrade_amount = 250 ;
@@ -89,17 +80,11 @@ class HomeController extends Controller {
 
 	    	}
 
-	    	dump($level_id) ;
-	    	dump($is_upgraded) ;
-	    	dump($upgrade_amount) ;
-
-	    	//die() ;
-
 	        $level->delete() ;
 
 	        if ( $is_upgraded ) {	
 
-	        	dump("I got here.") ;
+	        	$upliner 					= User::find( auth()->user()->id ) ;
 
 		        UserLevel::create([
 
@@ -125,7 +110,7 @@ class HomeController extends Controller {
 
 			        ]) ;
 
-	        		$user 				= User::find( $user_id ) ;
+	        		$down 				= User::find( $user_id ) ;
 
 	        		# send email with member details.
 

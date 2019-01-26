@@ -29,7 +29,7 @@ class ActivationController extends Controller
         $upliner                        = User::find( $upliner_id ) ;
 
     	return view( 'auth.activation', [ 
-            "USD"                       => $this->convertCurrency( 250, "ZAR", "USD" ) ,
+            "USD"                       => 20 , //$this->convertCurrency( 250, "ZAR", "USD" ) ,
             "upliner"                   => $upliner ,
 
         ] ) ;
