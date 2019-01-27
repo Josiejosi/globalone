@@ -42,19 +42,19 @@
 
                                 <a class="btn btn-success btn-block btn-lg" data-toggle="modal" data-target="#upgrade-model">upgrade</a>
 
-                            @elseif ( $incoming_sum == 750 && $build["level"] === 1 )
+                            @elseif ( $incoming_sum == 500 || $incoming_sum == 750 && $build["level"] === 1 )
 
                                 <a class="btn btn-success btn-block btn-lg" href="{{ url( '/upgrade' ) }}">Upgrade</a>
 
-                            @elseif ( $incoming_sum == 1500 || $incoming_sum == 2000 || $incoming_sum == 2250 && $build["level"] === 2 )
+                            @elseif ( $incoming_sum >= 750 && $incoming_sum < 2250  && $build["level"] === 2 )
 
                                 <a class="btn btn-success btn-block btn-lg" data-toggle="modal" data-target="#upgrade-model">upgrade</a>
 
-                            @elseif ( $incoming_sum == 3000 && $build["level"] === 2 )
+                            @elseif ( $incoming_sum == 2250 || $incoming_sum == 1500  && $build["level"] === 2 )
 
                                 <a class="btn btn-success btn-block btn-lg" href="{{ url( '/upgrade' ) }}">Upgrade</a>
 
-                            @elseif ( $incoming_sum == 3000 && $build["level"] === 3 )
+                            @elseif ( $incoming_sum == 5250 || $incoming_sum == 3500 && $build["level"] === 3 )
 
                                 <a class="btn btn-success btn-block btn-lg" href="{{ url( '/upgrade' ) }}">Start from Level 1</a>
 

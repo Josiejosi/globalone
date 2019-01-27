@@ -59,8 +59,6 @@ class IncomingAmountController extends Controller
 
     	$incoming = IncomingAmount::find( $transaction_id ) ;
 
-    	dump($incoming) ;
-
     	$sender_id = $incoming->sender_id ;
 
     	if ( $incoming->status == 0 ) {

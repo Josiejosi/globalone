@@ -50,7 +50,7 @@ class HomeController extends Controller {
 	        $is_upgraded 			= false ;
 	        $upgrade_amount 		= 500 ;
 
-	        if ( $incoming_sum == 750 ) {
+	        if ( $incoming_sum == 500 || $incoming_sum == 750 ) {
 
 		        if ( $level->level_id == 1 ) {
 		        	$level_id 		= 2 ;
@@ -60,7 +60,7 @@ class HomeController extends Controller {
 
 	    	}
 
-	    	if ( $incoming_sum == 1500 || $incoming_sum == 2000 || $incoming_sum == 2250 ) {
+	    	if ( $incoming_sum == 2250 || $incoming_sum == 1500 ) {
 
 		        if ( $level->level_id == 2 ) {
 		        	$level_id 		= 3 ;
@@ -70,7 +70,7 @@ class HomeController extends Controller {
 
 	    	}
 
-		    if ( $incoming_sum == 3000 ) {
+		    if ( $incoming_sum == 5250 || $incoming_sum == 3500 ||$incoming_sum == 3000  ) {
 
 		        if ( $level->level_id == 3 ) {
 		        	$level_id 		= 1 ;
