@@ -60,7 +60,7 @@ class HomeController extends Controller {
 
 	    	}
 
-	    	if ( $incoming_sum == 1500 ) {
+	    	if ( $incoming_sum == 1500 || $incoming_sum == 2000 || $incoming_sum == 2250 ) {
 
 		        if ( $level->level_id == 2 ) {
 		        	$level_id 		= 3 ;
