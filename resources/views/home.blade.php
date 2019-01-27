@@ -58,6 +58,10 @@
 
                                 <a class="btn btn-success btn-block btn-lg" href="{{ url( '/upgrade' ) }}">Start from Level 1</a>
 
+                            @elseif ( $incoming_sum >= 2250 && $incoming_sum < 5250  && $build["level"] === 3 )
+
+                                <a class="btn btn-success btn-block btn-lg" data-toggle="modal" data-target="#already-model">upgrade</a>
+
                             @else
 
                                 <a class="btn btn-success btn-block btn-lg" data-toggle="modal" data-target="#already-model">upgrade</a>
