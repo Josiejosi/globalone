@@ -44,35 +44,35 @@
                                 <input type="hidden" name="level" value="{{ $build['level'] }}">
                                 <input type="hidden" value="sum==750, level 2">
 
-                            @elseif ( $incoming_sum == 500 || $incoming_sum == 750 && $build["level"] === 1 )
+                            @elseif ( $incoming_sum == 500 || $incoming_sum == 750 && $build["level"] == 1 )
                                 <input type="hidden" name="level" value="{{ $build['level'] }}">
 
                                 <input type="hidden" value="sum==500 || sum==750, level 1">
 
                                 <a class="btn btn-success btn-block btn-lg" href="{{ url( '/upgrade' ) }}">Upgrade</a>
 
-                            @elseif ( $incoming_sum >= 750 && $incoming_sum < 2250  && $build["level"] === 2 )
+                            @elseif ( $incoming_sum >= 750 && $incoming_sum < 2250  && $build["level"] == 2 )
                                 <input type="hidden" name="level" value="{{ $build['level'] }}">
 
                                 <input type="hidden" value="sum>=750 || sum<2250, level 2">
 
                                 <a class="btn btn-success btn-block btn-lg" data-toggle="modal" data-target="#upgrade-model">upgrade</a>
 
-                            @elseif ( $incoming_sum == 2250 || $incoming_sum == 1500  && $build["level"] === 2 )
+                            @elseif ( $incoming_sum == 2250 || $incoming_sum == 1500  && $build["level"] == 2 )
                                 <input type="hidden" name="level" value="{{ $build['level'] }}">
 
                                 <input type="hidden" value="sum==2250 || sum==1500, level 2">
 
                                 <a class="btn btn-success btn-block btn-lg" href="{{ url( '/upgrade' ) }}">Upgrade</a>
 
-                            @elseif ( $incoming_sum == 5250 || $incoming_sum == 3500 && $build["level"] === 3 )
+                            @elseif ( $incoming_sum == 5250 || $incoming_sum == 3500 && $build["level"] == 3 )
                                 <input type="hidden" name="level" value="{{ $build['level'] }}">
 
                                 <input type="hidden" value="sum==5250 || sum==3500, level 3">
 
                                 <a class="btn btn-success btn-block btn-lg" href="{{ url( '/upgrade' ) }}">Start from Level 1</a>
 
-                            @elseif ( $incoming_sum >= 2250 && $incoming_sum < 5250  && $build["level"] === 3 )
+                            @elseif ( $incoming_sum >= 2250 && $incoming_sum < 5250  && $build["level"] == 3 )
                                 <input type="hidden" name="level" value="{{ $build['level'] }}">
 
                                 <input type="hidden" value="sum>= 2250 || sum< 5250, level 3">
