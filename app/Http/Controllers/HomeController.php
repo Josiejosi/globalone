@@ -290,11 +290,37 @@ class HomeController extends Controller {
 	    		UserReinvestedLevel::whereUserId( $user_id )->whereLevel(1)->update(['is_reinvested' => 1,]) ;
 	    	}
 
+        	#create aoutgoing transaction.
+
+        	$downliners 			= Downliner::whereUserId( $user_id )->get() ;
+
+        	foreach ( $downliners as $downliner ) {
+
+        		$sender_id 			= $downliner->downliner_id ;
+
+		        IncomingAmount::create([
+
+			        'amount' 		=> 250,
+			        'status' 		=> 0,
+			        'receiver_id'	=> $user_id,
+			        'sender_id' 	=> $sender_id,
+
+		        ]) ;
+
+        		# send email with member details.
+
+	    		$invested 					= UserReinvestedLevel::whereUserId( $user_id )->whereIsReinvested(1)->first() ;
+
+		     	flash()->overlay( "Successfully reinvested on Level: " . $invested->level  )->success() ;
+		    	return redirect()->back() ; 
+
+        	}
+
     	} else {
 
     		$invested 					= UserReinvestedLevel::whereUserId( $user_id )->whereIsReinvested(1)->first() ;
 
-	     	flash()->overlay( "Sorry, you already reinvested on Level: " . $invested->level . " Please wait for members to fully complete your reinvestment" )->danger() ;
+	     	flash()->overlay( "Sorry, you already reinvested on Level: " . $invested->level . " Please wait for members to fully complete your reinvestment" ) ;
 	    	return redirect()->back() ; 
 
     	}
@@ -305,18 +331,55 @@ class HomeController extends Controller {
 
     	$user_id 						= auth()->user()->id ;
 
-    	if ( UserReinvestedLevel::whereUserId( $user_id )->whereLevel(2)->count() == 1 ) {
+    	if ( UserReinvestedLevel::whereUserId( $user_id )->whereIsReinvested(2)->count() == 0 ) {
 
-			UserReinvestedLevel::create([
+	    	if ( UserReinvestedLevel::whereUserId( $user_id )->whereLevel(2)->count() == 1 ) {
 
-		        'level'				=> 2,
-		        'is_reinvested'		=> 1,
-		        'user_id' 			=> $user_id,
+				UserReinvestedLevel::create([
 
-			]) ;
+			        'level'				=> 2,
+			        'is_reinvested'		=> 1,
+			        'user_id' 			=> $user_id,
+
+				]) ;
+
+	    	} else {
+	    		UserReinvestedLevel::whereUserId( $user_id )->whereLevel(1)->update(['is_reinvested' => 2,]) ;
+	    	}
+
+        	#create aoutgoing transaction.
+
+        	$downliners 			= Downliner::whereUserId( $user_id )->get() ;
+
+        	foreach ( $downliners as $downliner ) {
+
+        		$sender_id 			= $downliner->downliner_id ;
+
+		        IncomingAmount::create([
+
+			        'amount' 		=> 250,
+			        'status' 		=> 0,
+			        'receiver_id'	=> $user_id,
+			        'sender_id' 	=> $sender_id,
+
+		        ]) ;
+
+        		# send email with member details.
+
+	    		$invested 					= UserReinvestedLevel::whereUserId( $user_id )->whereIsReinvested(2)->first() ;
+
+		     	flash()->overlay( "Successfully reinvested on Level: " . $invested->level  )->success() ;
+		    	return redirect()->back() ; 
+
+        	}
 
     	} else {
-    		UserReinvestedLevel::whereUserId( $user_id )->whereLevel(1)->update(['is_reinvested' => 1,]) ;
+
+    		$invested 					= UserReinvestedLevel::whereUserId( $user_id )->whereIsReinvested(2)->first() ;
+
+	     	flash()->overlay( "Sorry, you already reinvested on Level: " . $invested->level . " Please wait for members to fully complete your reinvestment" ) ;
+	    	return redirect()->back() ; 
+
     	}
 
     }
@@ -325,18 +388,55 @@ class HomeController extends Controller {
 
     	$user_id 						= auth()->user()->id ;
 
-    	if ( UserReinvestedLevel::whereUserId( $user_id )->whereLevel(3)->count() == 1 ) {
+    	if ( UserReinvestedLevel::whereUserId( $user_id )->whereIsReinvested(3)->count() == 0 ) {
 
-			UserReinvestedLevel::create([
+	    	if ( UserReinvestedLevel::whereUserId( $user_id )->whereLevel(3)->count() == 1 ) {
 
-		        'level'				=> 3,
-		        'is_reinvested'		=> 1,
-		        'user_id' 			=> $user_id,
+				UserReinvestedLevel::create([
 
-			]) ;
+			        'level'				=> 3,
+			        'is_reinvested'		=> 1,
+			        'user_id' 			=> $user_id,
+
+				]) ;
+
+	    	} else {
+	    		UserReinvestedLevel::whereUserId( $user_id )->whereLevel(1)->update(['is_reinvested' => 3,]) ;
+	    	}
+
+        	#create aoutgoing transaction.
+
+        	$downliners 			= Downliner::whereUserId( $user_id )->get() ;
+
+        	foreach ( $downliners as $downliner ) {
+
+        		$sender_id 			= $downliner->downliner_id ;
+
+		        IncomingAmount::create([
+
+			        'amount' 		=> 250,
+			        'status' 		=> 0,
+			        'receiver_id'	=> $user_id,
+			        'sender_id' 	=> $sender_id,
+
+		        ]) ;
+
+        		# send email with member details.
+
+	    		$invested 					= UserReinvestedLevel::whereUserId( $user_id )->whereIsReinvested(3)->first() ;
+
+		     	flash()->overlay( "Successfully reinvested on Level: " . $invested->level  )->success() ;
+		    	return redirect()->back() ; 
+
+        	}
 
     	} else {
-    		UserReinvestedLevel::whereUserId( $user_id )->whereLevel(1)->update(['is_reinvested' => 1,]) ;
+
+    		$invested 					= UserReinvestedLevel::whereUserId( $user_id )->whereIsReinvested(3)->first() ;
+
+	     	flash()->overlay( "Sorry, you already reinvested on Level: " . $invested->level . " Please wait for members to fully complete your reinvestment" ) ;
+	    	return redirect()->back() ; 
+
     	}
 
     }
