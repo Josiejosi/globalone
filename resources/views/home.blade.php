@@ -113,6 +113,44 @@
             </div>          
 
         </div>
+    </div>  
+
+    <div class="row">
+        <div class="col-sm-12">
+
+            <div class="element-wrapper">
+
+                <h5 class="element-header">Re-Invest</h5>
+                <div class="element-content">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="element-box el-tablo">
+
+                                @if ( count( $user_completed_level ) )
+
+                                @foreach( $user_completed_level as $complete )
+
+                                    @if ( $complete->is_level_complete == 1 )
+                                    <a href="{{ url( '/reinvest/' ) }}/{{ $complete->level }}" class="btn btn-lg btn-block btn-success">
+                                        Re-Invest - Level {{ $complete->level }}
+                                    </a>
+                                    @endif 
+
+                                @endforeach 
+
+                                @else
+
+                                <div class="alert alert-info">You need to complete a level before <b>re-investing</b></div>
+
+                                @endif 
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>          
+
+        </div>
     </div>            
 
     @if ( count( $incoming ) > 0 )
@@ -251,6 +289,8 @@
                                                     <b>R {{ $outcome->amount }} ZAR</b>
                                                 </td></tr>
                                                 <tr><td class="text-right">Username:</td><td class="text-left">{{ $upliner->username }}</td></tr>
+                                                <tr><td class="text-right">Email:</td><td class="text-left">{{ $upliner->email }}</td></tr>
+                                                <tr><td class="text-right">Phone:</td><td class="text-left">{{ $upliner->phone }}</td></tr>
                                                 <tr><td class="text-right">Name:</td><td class="text-left">{{ $upliner->name }} {{ $upliner->surname }}</td></tr>
                                                 <tr><td class="text-right">Bank:</td><td class="text-left">{{ $upliner->account->bank_name }}</td></tr>
                                                 <tr><td class="text-right">Account #:</td><td class="text-left">{{ $upliner->account->account_number }}</td></tr>
