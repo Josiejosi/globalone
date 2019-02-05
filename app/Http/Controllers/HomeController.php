@@ -109,7 +109,7 @@ class HomeController extends Controller {
 
     	}
 
-    	if ( $incoming_sum > 5250 ) {
+    	if ( $incoming_sum >= 5250 ) {
 
     		if ( UserCompletedLevel::whereUserId( $user_id )->whereLevel(1)->count() == 0 ) {
     			UserCompletedLevel::create([
