@@ -79,11 +79,11 @@ class HomeController extends Controller {
 
     	if ( $incoming_sum >= 2250 && $incoming_sum < 5250  ) {
 
-    		if ( UserCompletedLevel::whereUserId( $user_id )->whereLevel(2)->count() == 0 ) {
+    		if ( UserCompletedLevel::whereUserId( $user_id )->whereLevel(1)->count() == 0 ) {
 
     			UserCompletedLevel::create([
 
-			        'level'				=> 2,
+			        'level'				=> 1,
 			        'is_level_complete'	=> 1,
 			        'user_id' 			=> $user_id,
 
@@ -91,16 +91,16 @@ class HomeController extends Controller {
 
     		} else {
 
-    			UserCompletedLevel::whereUserId( $user_id )->whereLevel(2)->update(['is_level_complete'	=> 1,]) ;
+    			UserCompletedLevel::whereUserId( $user_id )->whereLevel(1)->update(['is_level_complete'	=> 1,]) ;
 
     		}
 
-    		if ( UserCompletedLevel::whereUserId( $user_id )->whereLevel(3)->count() == 0 ) {
+    		if ( UserCompletedLevel::whereUserId( $user_id )->whereLevel(2)->count() == 0 ) {
 
     			UserCompletedLevel::create([
 
-			        'level'				=> 3,
-			        'is_level_complete'	=> 0,
+			        'level'				=> 2,
+			        'is_level_complete'	=> 1,
 			        'user_id' 			=> $user_id,
 
     			]) ;
@@ -114,6 +114,30 @@ class HomeController extends Controller {
     		if ( UserCompletedLevel::whereUserId( $user_id )->whereLevel(1)->count() == 0 ) {
     			UserCompletedLevel::create([
 
+			        'level'				=> 1,
+			        'is_level_complete'	=> 1,
+			        'user_id' 			=> $user_id,
+
+    			]) ;
+    		} else {
+    			UserCompletedLevel::whereUserId( $user_id )->whereLevel(1)->update(['is_level_complete'	=> 1,]) ;
+    		}
+
+    		if ( UserCompletedLevel::whereUserId( $user_id )->whereLevel(2)->count() == 0 ) {
+    			UserCompletedLevel::create([
+
+			        'level'				=> 2,
+			        'is_level_complete'	=> 1,
+			        'user_id' 			=> $user_id,
+
+    			]) ;
+    		} else {
+    			UserCompletedLevel::whereUserId( $user_id )->whereLevel(2)->update(['is_level_complete'	=> 1,]) ;
+    		}
+
+    		if ( UserCompletedLevel::whereUserId( $user_id )->whereLevel(3)->count() == 0 ) {
+    			UserCompletedLevel::create([
+
 			        'level'				=> 3,
 			        'is_level_complete'	=> 1,
 			        'user_id' 			=> $user_id,
@@ -125,7 +149,6 @@ class HomeController extends Controller {
 
     	}
 
-    	$user_completed_level 			= UserCompletedLevel::whereUserId( $user_id )->get() ;
 
 		if ( UserReinvestedLevel::whereUserId( $user_id )->whereLevel(1)->count() == 0 ) {
 
@@ -161,7 +184,9 @@ class HomeController extends Controller {
 
 			]) ;
 
-		}     	
+		}    
+
+		$user_completed_level 			= UserCompletedLevel::whereUserId( $user_id )->get() ; 	
 
         return view( 'home', [
 
