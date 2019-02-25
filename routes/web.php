@@ -50,10 +50,6 @@ Route::get('/approve/{transaction_id}', 'IncomingAmountController@approve');
 Route::get('/pay/{transaction_id}', 'IncomingAmountController@pay');
 Route::get('/outgoing', 'OutgoingAmountController@index')->name('outgoing')->middleware( 'activate' ) ;
 
-Route::get('/reinvest/1', 'HomeController@reinvest_level_one') ;
-Route::get('/reinvest/2', 'HomeController@reinvest_level_two') ;
-Route::get('/reinvest/3', 'HomeController@reinvest_level_three') ;
-
 
 /*
  * ADMIN.

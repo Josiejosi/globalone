@@ -7,6 +7,7 @@ use App\User ;
 use App\Role ;
 use App\Account ;
 use App\UserLevel ;
+use App\UserCompletedLevel ;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -124,6 +125,39 @@ class RegisterController extends Controller
             'btc_address'           => $data["btc_address"], 
             'user_id'               => $user->id,
 
+
+        ]) ;
+
+
+        UserCompletedLevel::create([
+
+            'level'                 => 1,
+            'is_level_started'      => 1,
+            'is_level_complete'     => 0,
+            'upgrade_count'         => 0,
+            'user_id'               => $user->id,
+
+        ]) ;
+
+
+        UserCompletedLevel::create([
+
+            'level'                 => 2,
+            'is_level_started'      => 0,
+            'is_level_complete'     => 0,
+            'upgrade_count'         => 0,
+            'user_id'               => $user->id,
+
+        ]) ;
+
+
+        UserCompletedLevel::create([
+
+            'level'                 => 3,
+            'is_level_started'      => 0,
+            'is_level_complete'     => 0,
+            'upgrade_count'         => 0,
+            'user_id'               => $user->id,
 
         ]) ;
 

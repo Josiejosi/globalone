@@ -26,167 +26,12 @@ class HomeController extends Controller {
 
     	$incoming_sum 					= IncomingAmount::whereReceiverId( $user_id )->whereStatus( 2 )->get()->sum('amount') ;
     	$outgoing_sum 					= IncomingAmount::whereSenderId( $user_id )->whereStatus( 2 )->get()->sum('amount') ;
-
-    	//Check if user has levels complete
-    	//
-
-
-    	if ( $incoming_sum < 750 ) {
-
-    		if ( UserCompletedLevel::whereUserId( $user_id )->whereLevel(1)->count() == 0 ) {
-    			UserCompletedLevel::create([
-
-			        'level'				=> 1,
-			        'is_level_complete'	=> 0,
-			        'user_id' 			=> $user_id,
-
-    			]) ;
-    		}
-
-    	}
-
-    	if ( $incoming_sum >= 750 && $incoming_sum < 2250  ) {
-
-    		if ( UserCompletedLevel::whereUserId( $user_id )->whereLevel(1)->count() == 0 ) {
-
-    			UserCompletedLevel::create([
-
-			        'level'				=> 1,
-			        'is_level_complete'	=> 1,
-			        'user_id' 			=> $user_id,
-
-    			]) ;
-
-    		} else {
-
-    			UserCompletedLevel::whereUserId( $user_id )->whereLevel(1)->update(['is_level_complete'	=> 1,]) ;
-
-    		}
-
-    		if ( UserCompletedLevel::whereUserId( $user_id )->whereLevel(2)->count() == 0 ) {
-
-    			UserCompletedLevel::create([
-
-			        'level'				=> 2,
-			        'is_level_complete'	=> 0,
-			        'user_id' 			=> $user_id,
-
-    			]) ;
-
-    		}
-
-    	}
-
-    	if ( $incoming_sum >= 2250 && $incoming_sum < 5250  ) {
-
-    		if ( UserCompletedLevel::whereUserId( $user_id )->whereLevel(1)->count() == 0 ) {
-
-    			UserCompletedLevel::create([
-
-			        'level'				=> 1,
-			        'is_level_complete'	=> 1,
-			        'user_id' 			=> $user_id,
-
-    			]) ;
-
-    		} else {
-
-    			UserCompletedLevel::whereUserId( $user_id )->whereLevel(1)->update(['is_level_complete'	=> 1,]) ;
-
-    		}
-
-    		if ( UserCompletedLevel::whereUserId( $user_id )->whereLevel(2)->count() == 0 ) {
-
-    			UserCompletedLevel::create([
-
-			        'level'				=> 2,
-			        'is_level_complete'	=> 1,
-			        'user_id' 			=> $user_id,
-
-    			]) ;
-
-    		}
-
-    	}
-
-    	if ( $incoming_sum >= 5250 ) {
-
-    		if ( UserCompletedLevel::whereUserId( $user_id )->whereLevel(1)->count() == 0 ) {
-    			UserCompletedLevel::create([
-
-			        'level'				=> 1,
-			        'is_level_complete'	=> 1,
-			        'user_id' 			=> $user_id,
-
-    			]) ;
-    		} else {
-    			UserCompletedLevel::whereUserId( $user_id )->whereLevel(1)->update(['is_level_complete'	=> 1,]) ;
-    		}
-
-    		if ( UserCompletedLevel::whereUserId( $user_id )->whereLevel(2)->count() == 0 ) {
-    			UserCompletedLevel::create([
-
-			        'level'				=> 2,
-			        'is_level_complete'	=> 1,
-			        'user_id' 			=> $user_id,
-
-    			]) ;
-    		} else {
-    			UserCompletedLevel::whereUserId( $user_id )->whereLevel(2)->update(['is_level_complete'	=> 1,]) ;
-    		}
-
-    		if ( UserCompletedLevel::whereUserId( $user_id )->whereLevel(3)->count() == 0 ) {
-    			UserCompletedLevel::create([
-
-			        'level'				=> 3,
-			        'is_level_complete'	=> 1,
-			        'user_id' 			=> $user_id,
-
-    			]) ;
-    		} else {
-    			UserCompletedLevel::whereUserId( $user_id )->whereLevel(3)->update(['is_level_complete'	=> 1,]) ;
-    		}
-
-    	}
-
-
-		if ( UserReinvestedLevel::whereUserId( $user_id )->whereLevel(1)->count() == 0 ) {
-
-			UserReinvestedLevel::create([
-
-		        'level'				=> 1,
-		        'is_reinvested'		=> 0,
-		        'user_id' 			=> $user_id,
-
-			]) ;
-
-		}
-
-		if ( UserReinvestedLevel::whereUserId( $user_id )->whereLevel(2)->count() == 0 ) {
-
-			UserReinvestedLevel::create([
-
-		        'level'				=> 2,
-		        'is_reinvested'		=> 0,
-		        'user_id' 			=> $user_id,
-
-			]) ;
-
-		}
-
-		if ( UserReinvestedLevel::whereUserId( $user_id )->whereLevel(3)->count() == 0 ) {
-
-			UserReinvestedLevel::create([
-
-		        'level'					=> 3,
-		        'is_reinvested'			=> 0,
-		        'user_id' 				=> $user_id,
-
-			]) ;
-
-		}    
+  
 
 		$user_completed_level 			= UserCompletedLevel::whereUserId( $user_id )->orderBy( 'level', 'asc' )->get() ; 	
+
+
+ 		$currentLevel 					= Helpers::currentLevel() ;
 
         return view( 'home', [
 
@@ -195,7 +40,7 @@ class HomeController extends Controller {
         	'incoming' 					=> $incoming ,
         	'incoming_sum' 				=> $incoming_sum,
         	'outgoing_sum' 				=> $outgoing_sum,
-        	'user_completed_level' 		=> $user_completed_level,
+        	'currentLevel' 				=> $currentLevel,
 
         ]) ;
 
@@ -203,267 +48,85 @@ class HomeController extends Controller {
 
     public function upgrade() {
 
-    	if (  UserLevel::whereUserId( auth()->user()->id )->count() == 1 ) {
+    	$currentLevel 				= Helpers::currentLevel() ;
+
+    	if ( $currentLevel->upgrade_count == 3 ) {
+
+            $currentLevel->update([
+
+                'is_level_started'  => 0,
+                'is_level_complete' => 1,
+                'upgrade_count'     => 0 ,
+
+            ]) ;
+
+            $level_num                  = $currentLevel->level ;
+
+            if ( $level_num == 3 )
+                $level_num              = 1 ;
+            else if ( $level_num == 1 )
+            	$level_num              = 2 ;
+            else if ( $level_num == 2 )
+            	$level_num              = 3 ;
 
 
-	        $level 					= UserLevel::whereUserId( auth()->user()->id )->first() ;
 
-	        $incoming_sum 			= IncomingAmount::whereReceiverId( auth()->user()->id )->whereStatus( 2 )->get()->sum('amount') ;
+            UserCompletedLevel::whereUserId( auth()->user()->id )->whereLevel( $level_num )->update([
+                'is_level_started'  => 1,
+                'is_level_complete' => 0,
+                'upgrade_count'     => 0,
+            ]) ;
 
-	        $level_id 				= 1 ;
-
-	        $is_upgraded 			= false ;
-	        $upgrade_amount 		= 500 ;
-
-	        if ( $incoming_sum == 500 || $incoming_sum == 750 ) {
-
-		        if ( $level->level_id == 1 ) {
-		        	$level_id 		= 2 ;
-		        	$is_upgraded 	= true ;
-		        	$upgrade_amount = 500 ;
-		        }
-
-	    	}
-
-	    	if ( $incoming_sum >= 2250 && $incoming_sum < 5250 ) {
-
-		        if ( $level->level_id == 2 ) {
-		        	$level_id 		= 3 ;
-		        	$is_upgraded 	= true ;
-		        	$upgrade_amount = 1000 ;
-		        }
-
-	    	}
-
-	        $level->delete() ;
-
-	        if ( $is_upgraded ) {	
-
-	        	$upliner 					= User::find( auth()->user()->id ) ;
-
-		        UserLevel::create([
-
-		            'level_id'              => $level_id, 
-		            'user_id'               => auth()->user()->id,
-
-		        ]) ;        	
-
-	        	#create aoutgoing transaction.
-
-	        	$downliners 			= Downliner::whereUserId( auth()->user()->id )->get() ;
-
-	        	foreach ( $downliners as $downliner ) {
-
-	        		$user_id 			= $downliner->downliner_id ;
-
-			        IncomingAmount::create([
-
-				        'amount' 		=> $upgrade_amount,
-				        'status' 		=> 0,
-				        'receiver_id'	=> auth()->user()->id,
-				        'sender_id' 	=> $user_id,
-
-			        ]) ;
-
-	        		$down 				= User::find( $user_id ) ;
-
-	        		# send email with member details.
-
-
-	        	}
-
-	        }
-
-	        
-
-    	} else {
-
-	        $level_id 				= 1 ;
+            $level 						= UserLevel::whereUserId( auth()->user()->id )->first() ;
+            $level->delete() ;
 
 	        UserLevel::create([
 
-	            'level_id'              => $level_id, 
+	            'level_id'              => $level_num, 
 	            'user_id'               => auth()->user()->id,
 
-	        ]) ;
+	        ]) ; 
+
+        	$downliners 				= Downliner::whereUserId( auth()->user()->id )->get() ;
+        	$upgrade_amount				= 0 ;
+
+        	if ( $level_num == 1 ) $upgrade_amount = 250 ;
+        	if ( $level_num == 2 ) $upgrade_amount = 500 ;
+        	if ( $level_num == 3 ) $upgrade_amount = 1000 ;
+
+        	foreach ( $downliners as $downliner ) {
+
+        		$user_id 				= $downliner->downliner_id ;
+
+		        IncomingAmount::create([
+
+			        'amount' 			=> $upgrade_amount,
+			        'status' 			=> 0,
+			        'receiver_id'		=> auth()->user()->id,
+			        'sender_id' 		=> $user_id,
+
+		        ]) ;
+
+        		$down 				= User::find( $user_id ) ;
+
+        		# send email with member details.
+
+        	}
+
+			flash()->overlay( "Successfully upgraded." )->success() ;
+	    	return redirect()->back() ;
+
+
+    	} else {
+
+			flash()->overlay( "Not ready to upgrade." )->error() ;
+	    	return redirect()->back() ;
 
     	}
 
-    	flash()->overlay( "Successfully upgraded." )->success() ;
-    	
-    	return redirect()->back() ;
+
+
 
     }
 
-    public function reinvest_level_one() {
-
-    	$user_id 						= auth()->user()->id ;
-
-    	//if ( UserReinvestedLevel::whereUserId( $user_id )->whereIsReinvested(1)->count() == 0 ) {
-
-/*	    	if ( UserReinvestedLevel::whereUserId( $user_id )->whereLevel(1)->count() == 1 ) {
-
-				UserReinvestedLevel::create([
-
-			        'level'				=> 1,
-			        'is_reinvested'		=> 1,
-			        'user_id' 			=> $user_id,
-
-				]) ;
-
-	    	} else {
-	    		UserReinvestedLevel::whereUserId( $user_id )->whereLevel(1)->update(['is_reinvested' => 1,]) ;
-	    	}*/
-
-        	#create aoutgoing transaction.
-
-        	$downliners 			= Downliner::whereUserId( $user_id )->get() ;
-
-        	foreach ( $downliners as $downliner ) {
-
-        		$sender_id 			= $downliner->downliner_id ;
-
-		        IncomingAmount::create([
-
-			        'amount' 		=> 250,
-			        'status' 		=> 0,
-			        'receiver_id'	=> $user_id,
-			        'sender_id' 	=> $sender_id,
-
-		        ]) ;
-
-        		# send email with member details.
-
-
-        	}
-
-	    	$invested 					= UserReinvestedLevel::whereUserId( $user_id )->whereIsReinvested(1)->first() ;
-
-		    flash()->overlay( "Successfully reinvested on Level: " . $invested->level  )->success() ;
-		    return redirect()->back() ; 
-
-/*    	} else {
-
-    		$invested 					= UserReinvestedLevel::whereUserId( $user_id )->whereIsReinvested(1)->first() ;
-
-	     	flash()->overlay( "Sorry, you already reinvested on Level: " . $invested->level . " Please wait for members to fully complete your reinvestment" ) ;
-	    	return redirect()->back() ; 
-
-    	}*/
-
-    }
-
-    public function reinvest_level_two() {
-
-    	$user_id 						= auth()->user()->id ;
-
-    	//if ( UserReinvestedLevel::whereUserId( $user_id )->whereIsReinvested(2)->count() == 0 ) {
-
-/*	    	if ( UserReinvestedLevel::whereUserId( $user_id )->whereLevel(2)->count() == 1 ) {
-
-				UserReinvestedLevel::create([
-
-			        'level'				=> 2,
-			        'is_reinvested'		=> 1,
-			        'user_id' 			=> $user_id,
-
-				]) ;
-
-	    	} else {
-	    		UserReinvestedLevel::whereUserId( $user_id )->whereLevel(1)->update(['is_reinvested' => 2,]) ;
-	    	}*/
-
-        	#create aoutgoing transaction.
-
-        	$downliners 			= Downliner::whereUserId( $user_id )->get() ;
-
-        	foreach ( $downliners as $downliner ) {
-
-        		$sender_id 			= $downliner->downliner_id ;
-
-		        IncomingAmount::create([
-
-			        'amount' 		=> 250,
-			        'status' 		=> 0,
-			        'receiver_id'	=> $user_id,
-			        'sender_id' 	=> $sender_id,
-
-		        ]) ;
-
-        		# send email with member details.
-
-        	}
-
-    		$invested 					= UserReinvestedLevel::whereUserId( $user_id )->whereIsReinvested(2)->first() ;
-
-	     	flash()->overlay( "Successfully reinvested on Level: " . $invested->level  )->success() ;
-	    	return redirect()->back() ; 
-
-/*    	} else {
-
-    		$invested 					= UserReinvestedLevel::whereUserId( $user_id )->whereIsReinvested(2)->first() ;
-
-	     	flash()->overlay( "Sorry, you already reinvested on Level: " . $invested->level . " Please wait for members to fully complete your reinvestment" ) ;
-	    	return redirect()->back() ; 
-
-    	}*/
-
-    }
-
-    public function reinvest_level_three() {
-
-    	$user_id 						= auth()->user()->id ;
-
-    	//if ( UserReinvestedLevel::whereUserId( $user_id )->whereIsReinvested(3)->count() == 0 ) {
-
-/*	    	if ( UserReinvestedLevel::whereUserId( $user_id )->whereLevel(3)->count() == 1 ) {
-
-				UserReinvestedLevel::create([
-
-			        'level'				=> 3,
-			        'is_reinvested'		=> 1,
-			        'user_id' 			=> $user_id,
-
-				]) ;
-
-	    	} else {
-	    		UserReinvestedLevel::whereUserId( $user_id )->whereLevel(1)->update(['is_reinvested' => 3,]) ;
-	    	}*/
-
-        	#create aoutgoing transaction.
-
-        	$downliners 			= Downliner::whereUserId( $user_id )->get() ;
-
-        	foreach ( $downliners as $downliner ) {
-
-        		$sender_id 			= $downliner->downliner_id ;
-
-		        IncomingAmount::create([
-
-			        'amount' 		=> 250,
-			        'status' 		=> 0,
-			        'receiver_id'	=> $user_id,
-			        'sender_id' 	=> $sender_id,
-
-		        ]) ;
-
-        		# send email with member details. 
-
-        	}
-
-    		$invested 					= UserReinvestedLevel::whereUserId( $user_id )->whereIsReinvested(3)->first() ;
-
-	     	flash()->overlay( "Successfully reinvested on Level: " . $invested->level  )->success() ;
-	    	return redirect()->back() ;
-
-/*    	} else {
-
-    		$invested 					= UserReinvestedLevel::whereUserId( $user_id )->whereIsReinvested(3)->first() ;
-
-	     	flash()->overlay( "Sorry, you already reinvested on Level: " . $invested->level . " Please wait for members to fully complete your reinvestment" ) ;
-	    	return redirect()->back() ; 
-
-    	}*/
-
-    }
 }

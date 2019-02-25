@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\User ;
 use App\IncomingAmount ;
+use App\UserCompletedLevel ;
 
 use App\Classes\Helpers ;
 
@@ -30,7 +31,10 @@ class IncomingAmountController extends Controller
 
     	$incoming               = IncomingAmount::find( $transaction_id ) ;
 
-    	$sender_id              = $incoming->sender_id ;
+        $sender_id              = $incoming->sender_id ;
+    	$receiver_id            = $incoming->receiver_id ;
+
+
 
     	if ( $incoming->status == 1 ) {
     		
@@ -45,6 +49,8 @@ class IncomingAmountController extends Controller
     			$user->update( [ 'is_active' => true ] ) ;
 
     		}
+
+            Helpers::incrementLevelPay( auth()->user()->id ) ;
 
     		flash()->overlay( 'You have successfully approved a transaction.', 'Transaction approved' ) ;
 

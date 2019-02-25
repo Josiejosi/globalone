@@ -37,54 +37,18 @@
                 <h5 class="element-header">Upgrade</h5>
                 <div class="element-content">
                     <div class="row">
-                        <div class="col-sm-8 col-offset-2">
-                            @if ( $incoming_sum == 750 && $build["level"] === 2 )
-
-                                <a class="btn btn-success btn-block btn-lg" data-toggle="modal" data-target="#upgrade-model">upgrade</a>
-                                <input type="hidden" name="level" value="{{ $build['level'] }}">
-                                <input type="hidden" value="sum==750, level 2">
-
-                            @elseif ( $incoming_sum == 500 || $incoming_sum == 750 && $build["level"] == 1 )
-                                <input type="hidden" name="level" value="{{ $build['level'] }}">
-
-                                <input type="hidden" value="sum==500 || sum==750, level 1">
-
-                                <a class="btn btn-success btn-block btn-lg" href="{{ url( '/upgrade' ) }}">Upgrade</a>
-
-                            @elseif ( $incoming_sum >= 750 && $incoming_sum < 2250  && $build["level"] == 2 )
-                                <input type="hidden" name="level" value="{{ $build['level'] }}">
-
-                                <input type="hidden" value="sum>=750 || sum<2250, level 2">
-
-                                <a class="btn btn-success btn-block btn-lg" data-toggle="modal" data-target="#upgrade-model">upgrade</a>
-
-                            @elseif ( $incoming_sum == 2250 || $incoming_sum == 1500  && $build["level"] == 2 )
-                                <input type="hidden" name="level" value="{{ $build['level'] }}">
-
-                                <input type="hidden" value="sum==2250 || sum==1500, level 2">
-
-                                <a class="btn btn-success btn-block btn-lg" href="{{ url( '/upgrade' ) }}">Upgrade</a>
-
-                            @elseif ( $incoming_sum == 5250 || $incoming_sum == 3500 && $build["level"] == 3 )
-                                <input type="hidden" name="level" value="{{ $build['level'] }}">
-
-                                <input type="hidden" value="sum==5250 || sum==3500, level 3">
-
-                                <a class="btn btn-success btn-block btn-lg" href="{{ url( '/upgrade' ) }}">Start from Level 1</a>
-
-                            @elseif ( $incoming_sum >= 2250 && $incoming_sum < 5250  && $build["level"] == 3 )
-                                <input type="hidden" name="level" value="{{ $build['level'] }}">
-
-                                <input type="hidden" value="sum>= 2250 || sum< 5250, level 3">
-
-                                <a class="btn btn-success btn-block btn-lg" data-toggle="modal" data-target="#already-model">upgrade</a>
-
-                            @else
-
-                                <input type="hidden" name="level" value="{{ $build['level'] }}">
-
-                                <a class="btn btn-success btn-block btn-lg" data-toggle="modal" data-target="#already-model">upgrade</a>
-                                
+                        <div class="col-sm-8 offset-sm-2">
+                            
+                            @if( $build["level"] == 1 )
+                                <a class="btn btn-success btn-block btn-lg" href="{{ url( '/upgrade' ) }}">Upgrade to level 2</a>
+                            @endif
+                            
+                            @if( $build["level"] == 2 )
+                                <a class="btn btn-success btn-block btn-lg" href="{{ url( '/upgrade' ) }}">Upgrade to level 3</a>
+                            @endif
+                            
+                            @if( $build["level"] == 3 )
+                                <a class="btn btn-success btn-block btn-lg" href="{{ url( '/upgrade' ) }}">Start Level 1 again</a>
                             @endif
                         </div>
                     </div>
@@ -114,44 +78,6 @@
 
         </div>
     </div>  
-
-    <div class="row">
-        <div class="col-sm-12">
-
-            <div class="element-wrapper">
-
-                <h5 class="element-header">Re-Invest</h5>
-                <div class="element-content">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="element-box el-tablo">
-
-                                @if ( count( $user_completed_level ) )
-
-                                @foreach( $user_completed_level as $complete )
-
-                                    @if ( $complete->is_level_complete == 1 )
-                                    <a href="{{ url( '/reinvest/' ) }}/{{ $complete->level }}" class="btn btn-lg btn-block btn-success">
-                                        Re-Invest - Level {{ $complete->level }}
-                                    </a>
-                                    @endif 
-
-                                @endforeach 
-
-                                @else
-
-                                <div class="alert alert-info">You need to complete a level before <b>re-investing</b></div>
-
-                                @endif 
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>          
-
-        </div>
-    </div>            
 
     @if ( count( $incoming ) > 0 )
 
@@ -224,61 +150,6 @@
 
                         <h5 class="element-header">Upliner Banking Details</h5>
                         <div class="element-content">
-                            <div class="row">
-
-                                <div class="alert alert-warning alert-important" role="alert">
-                                    <b>Note</b>: You need to send proof of payment, to proceed.
-                                </div>
-                                @if ( session('success') )
-                                    <div class="alert alert-success" role="alert">{{ session('success') }}</div>
-                                @endif
-                                @if ( session('error') )
-                                    <div class="alert alert-success" role="alert">{{ session('error') }}</div>
-                                @endif
-
-                                <div class="col-md-6 col-md-offset-3">
-
-                                    <form method="POST" action="{{ url( '/account/activation' ) }}" enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="form-group">
-                                            <label for="username">Username</label>
-                                            
-                                            <input type="text" 
-                                                name="username" 
-                                                value="{{ auth()->user()->username, '' }}" 
-                                                class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" 
-                                                placeholder="username or email-address proof-of-payment">
-
-                                            <input type="hidden" 
-                                                name="receiver_id" 
-                                                value="{{ $upliner->id }}">
-
-                                            @if ($errors->has('username'))
-                                                <span class="error" role="alert">
-                                                    <strong>{{ $errors->first('username') }}</strong>
-                                                </span>
-                                             @endif
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="proof_of_activation">Proof of payment</label>
-                                            <input type="file" 
-                                                name="proof_of_activation" 
-                                                class="form-control{{ $errors->has('proof_of_activation') ? ' is-invalid' : '' }}" 
-                                                placeholder="Upload your proof of payment here.">
-                                            @if ($errors->has('proof_of_activation'))
-                                                <span class="error" role="alert">
-                                                    <strong>{{ $errors->first('proof_of_activation') }}</strong>
-                                                </span>
-                                             @endif
-                                        </div>
-                                        <div class="form-group">
-                                            <button class="btn btn-success btn-lg">{{ __('click here to activate') }}</button>.
-                                        </div>
-                                    </form>
-
-                                </div>
-
-                            </div>
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="element-box el-tablo">

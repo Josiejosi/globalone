@@ -16,7 +16,9 @@ class CreateUserCompletedLevelsTable extends Migration
         Schema::create('user_completed_levels', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer( 'level' ) ;
+            $table->boolean( 'is_level_started' ) ;
             $table->boolean( 'is_level_complete' ) ;
+            $table->integer( 'upgrade_count' ) ;
             $table->bigInteger( 'user_id' )->unsigned() ;
 
             $table->foreign('user_id')->references('id')->on('users') ;

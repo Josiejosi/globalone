@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 use Illuminate\Http\Request;
 
+use App\UserCompletedLevel ;
+
 class LoginController extends Controller
 {
     /*
@@ -55,6 +57,56 @@ class LoginController extends Controller
             $field => $request->get($this->username()),
             'password' => $request->password,
         ];
+    }
+
+    protected function authenticated( Request $request, $user ) {
+
+        $user_id                        = $user->id ;
+
+
+        if ( UserCompletedLevel::whereUserId( $user_id )->whereLevel(1)->count() == 0 ) {
+
+            UserCompletedLevel::create([
+
+                'level'                 => 1,
+                'is_level_started'      => 1,
+                'is_level_complete'     => 0,
+                'upgrade_count'         => 0,
+                'user_id'               => $user->id,
+
+            ]) ;
+
+        }
+
+        if ( UserCompletedLevel::whereUserId( $user_id )->whereLevel(2)->count() == 0 ) {
+
+            UserCompletedLevel::create([
+
+                'level'                 => 2,
+                'is_level_started'      => 0,
+                'is_level_complete'     => 0,
+                'upgrade_count'         => 0,
+                'user_id'               => $user->id,
+
+            ]) ;
+
+        }
+
+        if ( UserCompletedLevel::whereUserId( $user_id )->whereLevel(3)->count() == 0 ) {
+
+            UserCompletedLevel::create([
+
+                'level'                 => 3,
+                'is_level_started'      => 0,
+                'is_level_complete'     => 0,
+                'upgrade_count'         => 0,
+                'user_id'               => $user->id,
+
+            ]) ;
+
+        }
+
+
     }
 
 }

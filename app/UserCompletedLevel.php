@@ -12,7 +12,9 @@ class UserCompletedLevel extends Model {
     protected $fillable = [
 
         'level',
+        'is_level_started',
         'is_level_complete',
+        'upgrade_count',
         'user_id',
 
     ] ;
