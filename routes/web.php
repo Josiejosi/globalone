@@ -22,6 +22,7 @@ Route::get('/account/activation', 'ActivationController@index')->name('activatio
 
 Route::post('/account/activation', 'ActivationController@activate') ;
 Route::get('/home', 'HomeController@index')->name('home')->middleware( 'activate' ) ;
+Route::get('/structure', 'StructureController@index')->name('structure')->middleware( 'activate' ) ;
 
 Route::get('/account', 'AccountController@index')->name('account')->middleware( 'activate' ) ;
 Route::post('/account', 'AccountController@store') ;

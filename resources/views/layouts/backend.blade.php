@@ -74,6 +74,14 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="{{ url('/structure') }}">
+                                    <div class="icon-w">
+                                        <div class="os-icon os-icon-hierarchy-structure-2"></div>
+                                    </div>
+                                    <span>Structure</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{{ url('/incoming') }}">
                                     <div class="icon-w">
                                         <div class="os-icon os-icon-hierarchy-structure-2"></div>
@@ -229,6 +237,14 @@
                                                 <div class="os-icon os-icon-hierarchy-structure-2"></div>
                                             </div>
                                             <span>Downliner</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/structure') }}">
+                                            <div class="icon-w">
+                                                <div class="os-icon os-icon-hierarchy-structure-2"></div>
+                                            </div>
+                                            <span>Structure</span>
                                         </a>
                                     </li>
                                     <li>
