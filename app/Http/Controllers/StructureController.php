@@ -26,6 +26,7 @@ class StructureController extends Controller
 			$display_structure[]		= [
 
 				'name' 					=> $user->name . " " . $user->surname,
+				'phone' 				=> $user->phone,
 				'level' 				=> $level->level_id,
 				'join' 					=> $user->created_at,
 
@@ -44,6 +45,7 @@ class StructureController extends Controller
 					$display_structure[]		= [
 
 						'name' 					=> $user->name . " " . $user->surname,
+						'phone' 				=> $user->phone,
 						'level' 				=> $level->level_id,
 						'join' 					=> $user->created_at,
 						

@@ -18,6 +18,7 @@
                                         <tr>
                                             <th>Username</th>
                                             <th>Level</th>
+                                            <th>Phone</th>
                                             <th>Join Date</th>
                                         </tr>
                                     </thead>
@@ -30,6 +31,7 @@
                                                 <tr>
                                                     <td class="text-left">{{ $downliner["name"] }}</td>
                                                     <td class="text-left"><b>Level {{ $downliner["level"] }}</b></td>
+                                                    <td class="text-left"><b>{{ $downliner["phone"] }}</b></td>
                                                     <td class="text-center"><small>{{ $downliner["join"] }}</small></td>
                                                 </tr>
 
