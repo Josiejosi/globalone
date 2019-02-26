@@ -34,6 +34,23 @@ class Helpers {
 
     }
 
+    public static function getLevel() {
+
+        $level_id                   = 1 ;
+
+        if ( auth()->check() ) {
+
+            if ( UserLevel::whereUserId( auth()->user()->id )->count() > 0 ) {
+
+                $level              = UserLevel::whereUserId( auth()->user()->id )->first() ;
+                $level_id           = $level->level_id ;
+
+            }
+
+        }
+        return $level_id ;
+    }
+
     public static function currentLevel() {
 
         return UserCompletedLevel::whereUserId( auth()->user()->id )->whereIsLevelStarted(1)->whereIsLevelComplete(0)->first() ;

@@ -14,54 +14,82 @@ class StructureController extends Controller
 {
 	public function index() {
 
-		$structures 					= Downliner::whereUserId( auth()->user()->id )->orderBy( 'id', 'desc' )->get() ;
+        return view( 'structure', [ 
+        	'build' 						=> Helpers::build('Structure'), 
+        ] ) ;
 
-		$display_structure 				= [] ;
+    }
+
+    public function structure() {
+
+    	$owner_level 					= Helpers::getLevel() ;
+
+		$firstlevel 					= [] ;
+		$secondlevel 					= [] ;
+
+		$owner 							= [
+
+			'name' 						=> auth()->user()->name . " " . auth()->user()->surname,
+			'phone' 					=> auth()->user()->phone,
+			'level' 					=> $owner_level,
+
+		] ;
+
+		$structures 					= Downliner::whereUserId( auth()->user()->id )->orderBy( 'id', 'desc' )->get() ;
 
 		foreach ( $structures as $structure ) {
 
             $user 						= User::find( $structure->downliner_id ) ;
             $level 						= UserLevel::whereUserId($structure->downliner_id)->first() ;
 
-			$display_structure[]		= [
+			$firstlevel[]				= [
 
+				'id' 					=> $user->id,
 				'name' 					=> $user->name . " " . $user->surname,
 				'phone' 				=> $user->phone,
 				'level' 				=> $level->level_id,
-				'join' 					=> $user->created_at,
 
 			] ;
-			
-			$inner_structures 			= Downliner::whereUserId( $structure->downliner_id )->orderBy( 'id', 'desc' )->get() ;
-
-
-
-			if ( count( $inner_structures ) > 0 ) {
-
-				foreach ( $inner_structures as $inner_structure ) {
-		            $user 						= User::find( $inner_structure->downliner_id ) ;
-		            $level 						= UserLevel::whereUserId($inner_structure->downliner_id)->first() ;
-
-					$display_structure[]		= [
-
-						'name' 					=> $user->name . " " . $user->surname,
-						'phone' 				=> $user->phone,
-						'level' 				=> $level->level_id,
-						'join' 					=> $user->created_at,
-						
-					] ;
-				}
-
-			}
 
 		}
 
-		//dd($display_structure) ;
+		foreach ( $firstlevel as $member ) {
 
-        return view( 'structure', [ 
-        	'build' 						=> Helpers::build('Structure'), 
-        	'downliners' 					=> $display_structure,
-        ] ) ;
+			$structures 					= Downliner::whereUserId( $member['id'] )->orderBy( 'id', 'desc' )->get() ;
+
+			$secondlevelowner 				= [
+				'name' 						=> $member['name'],
+				'phone' 					=> $member['phone'],
+				'level' 					=> $member['level'],				
+			] ;
+
+			$secondlevel 					= [] ;
+
+			foreach ( $structures as $structure ) {
+
+	            $user 						= User::find( $structure->downliner_id ) ;
+	            $level 						= UserLevel::whereUserId($structure->downliner_id)->first() ;
+
+				$secondlevel[]				= [
+
+					'name' 					=> $user->name . " " . $user->surname,
+					'phone' 				=> $user->phone,
+					'level' 				=> $level->level_id,
+
+				] ;
+
+			}
+
+			$secondlevelbuild[] 		    = [$secondlevelowner, 'children'=>$secondlevel] ;
+		}
+
+		return [ 			
+			'name' 							=> auth()->user()->name . " " . auth()->user()->surname,
+			'phone' 						=> auth()->user()->phone,  
+			'children' => $firstlevel 
+		] ;
+		//return [ $owner,  'children' => $secondlevelbuild ] ;
 
     }
+
 }

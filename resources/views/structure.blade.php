@@ -1,5 +1,14 @@
 @extends('layouts.backend')
 
+@section('css')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/orgchart/2.1.3/css/jquery.orgchart.min.css" rel="stylesheet">
+    <style>
+        .orgchart {
+            background-image: none !important ;
+        }
+    </style>
+@endsection
+
 @section('content')
 
     <div class="element-wrapper">
@@ -7,54 +16,29 @@
         <div class="element-box">
 
             <div class="table-responsive">
-                <div id="dataTable1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
-
-
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-lg table-v2 table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Username</th>
-                                            <th>Level</th>
-                                            <th>Phone</th>
-                                            <th>Join Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        @if ( count( $downliners ) > 0 )
-
-                                            @foreach( $downliners as $downliner )
-
-                                                <tr>
-                                                    <td class="text-left">{{ $downliner["name"] }}</td>
-                                                    <td class="text-left"><b>Level {{ $downliner["level"] }}</b></td>
-                                                    <td class="text-left"><b>{{ $downliner["phone"] }}</b></td>
-                                                    <td class="text-center"><small>{{ $downliner["join"] }}</small></td>
-                                                </tr>
-
-                                            @endforeach
-
-                                        @else
-
-                                            <tr>
-                                                <td class="text-center" colspan="3">No downliners.</td>
-                                            </tr>
-
-                                        @endif                                                                  
-
-                                    </tbody>
-
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div id="chart-container"></div>
             </div>
             
         </div>
     </div>
 
+@endsection
+@section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/orgchart/2.1.3/js/jquery.orgchart.min.js"></script>
+
+    <script>
+        
+        $( function() {
+            $.getJSON('/member/structure', function(data) {
+                console.log(data) ;
+
+                var oc = $('#chart-container').orgchart({
+                  'data' : data,
+                  'nodeContent': 'phone'
+                });
+
+            }) ;
+        }) ;
+
+    </script>
 @endsection
