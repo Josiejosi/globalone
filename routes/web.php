@@ -40,6 +40,7 @@ Route::get('/send/cash', 'CashController@send')->name('send')->middleware( 'acti
 Route::post('/send/cash', 'CashController@post_send')->name('send') ;
 Route::get('/receive/cash', 'CashController@receive')->name('receive')->middleware( 'activate' ) ;
 Route::get('/upgrade', 'HomeController@upgrade')->name('upgrade')->middleware( 'activate' ) ;
+Route::get('/reinvest/{level}', 'HomeController@reinvest')->name('reinvest')->middleware( 'activate' ) ;
 
 Route::get('/upliner', 'UpliftController@index')->name('upliner')->middleware( 'activate' ) ;
 Route::get('/downliner', 'DownliftController@index')->name('downliner')->middleware( 'activate' ) ;

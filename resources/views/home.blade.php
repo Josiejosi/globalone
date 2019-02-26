@@ -56,8 +56,34 @@
             </div>          
 
         </div>
-    </div> 
+    </div>     
+    @if ( count( $reinvestments ) > 0 )
+    <div class="row">
+        <div class="col-sm-12">
 
+            <div class="element-wrapper">
+
+                <h5 class="element-header">Reinvest Completed Level?</h5>
+                <div class="element-content">
+                    <div class="row">
+                        <div class="col-sm-8 offset-sm-2">
+                            
+                            @foreach( $reinvestments as $reinvestment )
+
+                                <a class="btn btn-info btn-block btn-lg" href="{{ url( '/reinvest/' ) }}/{{ $reinvestment->level }}">
+                                    Reinvest Level {{ $reinvestment->level }}
+                                </a>
+
+                            @endforeach
+
+                        </div>
+                    </div>
+                </div>
+            </div>          
+
+        </div>
+    </div> 
+    @endif
     <div class="row">
         <div class="col-sm-12">
 

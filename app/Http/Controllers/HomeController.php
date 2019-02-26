@@ -28,7 +28,9 @@ class HomeController extends Controller {
     	$outgoing_sum 					= IncomingAmount::whereSenderId( $user_id )->whereStatus( 2 )->get()->sum('amount') ;
   
 
-		$user_completed_level 			= UserCompletedLevel::whereUserId( $user_id )->orderBy( 'level', 'asc' )->get() ; 	
+		$user_completed_level 			= UserCompletedLevel::whereUserId( $user_id )->orderBy( 'level', 'asc' )->get() ;
+
+        $reinvestments                  = UserReinvestedLevel::whereUserId( auth()->user()->id )->orderBy( 'level', 'asc' )->get() ; 	
 
 
  		$currentLevel 					= Helpers::currentLevel() ;
@@ -40,7 +42,8 @@ class HomeController extends Controller {
         	'incoming' 					=> $incoming ,
         	'incoming_sum' 				=> $incoming_sum,
         	'outgoing_sum' 				=> $outgoing_sum,
-        	'currentLevel' 				=> $currentLevel,
+            'currentLevel'              => $currentLevel,
+        	'reinvestments' 			=> $reinvestments,
 
         ]) ;
 
@@ -124,8 +127,38 @@ class HomeController extends Controller {
 
     	}
 
+    }
 
+    public function reinvest( $level ) {
 
+        $downliners                 = Downliner::whereUserId( auth()->user()->id )->get() ;
+        $upgrade_amount             = 0 ;
+
+        if ( $level == 1 ) $upgrade_amount = 250 ;
+        if ( $level == 2 ) $upgrade_amount = 500 ;
+        if ( $level == 3 ) $upgrade_amount = 1000 ;
+
+        foreach ( $downliners as $downliner ) {
+
+            $user_id                = $downliner->downliner_id ;
+
+            IncomingAmount::create([
+
+                'amount'            => $upgrade_amount,
+                'status'            => 0,
+                'receiver_id'       => auth()->user()->id,
+                'sender_id'         => $user_id,
+
+            ]) ;
+
+            $down               = User::find( $user_id ) ;
+
+            # send email with member details.
+
+        }
+
+        flash()->overlay( "Successfully upgraded." )->success() ;
+        return redirect()->back() ;
 
     }
 

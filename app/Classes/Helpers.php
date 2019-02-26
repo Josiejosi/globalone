@@ -4,6 +4,7 @@ namespace App\Classes;
 
 use App\UserLevel ;
 use App\UserCompletedLevel ;
+use App\UserReinvestedLevel ;
 
 class Helpers {
 
@@ -51,6 +52,48 @@ class Helpers {
         if ( $current_level->upgrade_count == 2 ) {
 
             $current_level->update([ 'upgrade_count' => 3, ]) ;
+
+            if ( $current_level->level == 1 ) {
+
+                if ( UserReinvestedLevel::whereLevel( 1 )->whereUserId( $upliner_id )->count() == 0 ) {
+
+                    UserReinvestedLevel::create([
+                        'level'             => 1,
+                        'is_reinvested'     => 1,
+                        'user_id'           => $upliner_id,
+                    ]) ;
+
+                }
+
+            }
+
+            if ( $current_level->level == 2 ) {
+
+                if ( UserReinvestedLevel::whereLevel( 2 )->whereUserId( $upliner_id )->count() == 0 ) {
+
+                    UserReinvestedLevel::create([
+                        'level'             => 2,
+                        'is_reinvested'     => 1,
+                        'user_id'           => $upliner_id,
+                    ]) ;
+
+                }
+
+            }
+
+            if ( $current_level->level == 3 ) {
+
+                if ( UserReinvestedLevel::whereLevel( 3 )->whereUserId( $upliner_id )->count() == 0 ) {
+
+                    UserReinvestedLevel::create([
+                        'level'             => 3,
+                        'is_reinvested'     => 1,
+                        'user_id'           => $upliner_id,
+                    ]) ;
+
+                }
+
+            }
 
 
         } else if ( $current_level->upgrade_count == 1 ) {
