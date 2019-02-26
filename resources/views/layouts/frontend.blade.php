@@ -100,11 +100,6 @@
                                     @else
                                     <li><a href="{{ url( '/faq' ) }}">FAQ</a></li>
                                     @endif
-                                    @if ( Route::currentRouteName() === "register" )
-                                    <li class="current"><a href="{{ url( '/register' ) }}">Join Now</a></li>
-                                    @else
-                                    <li><a href="{{ url( '/register' ) }}">Join Now</a></li>
-                                    @endif
                                 </ul>
                                 <ul class="mobile-menu clearfix">
                                     @if ( Route::currentRouteName() === "index" )
@@ -116,11 +111,6 @@
                                     <li class="current"><a href="{{ url( '/faq' ) }}">FAQ</a></li>
                                     @else
                                     <li><a href="{{ url( '/faq' ) }}">FAQ</a></li>
-                                    @endif
-                                    @if ( Route::currentRouteName() === "register" )
-                                    <li class="current"><a href="{{ url( '/register' ) }}">Join Now</a></li>
-                                    @else
-                                    <li><a href="{{ url( '/register' ) }}">Join Now</a></li>
                                     @endif
                                 </ul>
                             </div>
