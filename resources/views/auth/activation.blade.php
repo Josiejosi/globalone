@@ -76,6 +76,7 @@
                                             <b>R 250 ZAR OR $ 20 USD</b>
                                         </td></tr>
                                         <tr><td class="text-right">Username:</td><td class="text-left">{{ $upliner->username }}</td></tr>
+                                        <tr><td class="text-right">Phone number:</td><td class="text-left">{{ $upliner->phone }}</td></tr>
                                         <tr><td class="text-right">Name:</td><td class="text-left">{{ $upliner->name }} {{ $upliner->surname }}</td></tr>
                                         <tr><td class="text-right">Bank:</td><td class="text-left">{{ $upliner->account->bank_name }}</td></tr>
                                         <tr><td class="text-right">Account #:</td><td class="text-left">{{ $upliner->account->account_number }}</td></tr>
