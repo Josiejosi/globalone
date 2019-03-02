@@ -40,7 +40,7 @@
         <div class="col-sm-7">
             <div class="element-wrapper">
                 <div class="element-box">
-                    <form action="{{ url( '/profile' ) }}" method="POST">
+                    <form action="{{ url( '/password' ) }}" method="POST">
                         @csrf
                         <div class="element-info">
                             <div class="element-info-with-icon">
