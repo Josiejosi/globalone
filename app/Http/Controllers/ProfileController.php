@@ -19,7 +19,7 @@ class ProfileController extends Controller
     }
 
     public function store(Request $request) {
-        
+
         $account                    = User::find( auth()->user()->id )->update([
 
             'name'                  => isset( $request->name ) ? $request->name : '',
